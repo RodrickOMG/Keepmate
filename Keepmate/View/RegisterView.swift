@@ -11,6 +11,7 @@ import SwiftUI
 struct RegisterView: View {
     @State var email = ""
     @State private var password = ""
+    @State private var username = ""
     @State var err = ""
     @Binding var isPresented: Bool
     var body: some View {
@@ -21,15 +22,18 @@ struct RegisterView: View {
             .navigationBarHidden(true)
             .navigationBarTitle(Text("Home"))
             .edgesIgnoringSafeArea([.top, .bottom])
-            Button(action: {
-                self.isPresented.toggle()
-            }) {
-                Image(systemName: "chevron.left")
-                    .imageScale(.large)
-                    .font(.system(size: 20))
-                    .position(x: 20, y: 20)
-                    .foregroundColor(Color("BackBtn1"))
+            VStack {
+                Button(action: {
+                    self.isPresented.toggle()
+                }) {
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 20))
+                        .foregroundColor(Color("BackBtn1"))
+                    
+                }
             }
+            .frame(width: 30, height: 30, alignment: .topLeading)
+            .position(x: 30, y: 20)
             VStack {
                 Text("Keepmate")
                     .fontWeight(.bold)
@@ -54,7 +58,7 @@ struct RegisterView: View {
                             .font(.custom("Chalkboard SE", size: 20))
                             .foregroundColor(Color("Font1"))
                             .multilineTextAlignment(.leading)
-                        TextField("Enter Username...", text: $password)
+                        TextField("Enter Username...", text: $username)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(width: 200, alignment: .center)
                             .font(.custom("Chalkboard SE", size: 18))
