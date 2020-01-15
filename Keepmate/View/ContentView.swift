@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State var show = false
+    @State var viewState = CGSize.zero // position
     
     var body: some View {
         ZStack {
@@ -29,9 +30,10 @@ struct ContentView: View {
                 .offset(x: 0, y: show ? -400 : -44)
                 .scaleEffect(0.85)
                 .rotationEffect(Angle(degrees: show ? 15 : 0))
-                .rotation3DEffect(Angle(degrees: show ? 50 : 0), axis: (x: 10  , y: 10, z: 10))
+//                .rotation3DEffect(Angle(degrees: show ? 50 : 0), axis: (x: 10  , y: 10, z: 10))
 //                .blendMode(.hardLight)
                 .animation(.easeInOut(duration: 0.6))
+                .offset(x: viewState.width, y: viewState.height)
             
             CardView()
                 .background(Color("Background2"))
@@ -40,17 +42,30 @@ struct ContentView: View {
                 .offset(x: 0, y: show ? -200 : -22)
                 .scaleEffect(0.9)
                 .rotationEffect(Angle(degrees: show ? 10 : 0))
-                .rotation3DEffect(Angle(degrees: show ? 40 : 0), axis: (x: 10  , y: 10, z: 10))
+//                .rotation3DEffect(Angle(degrees: show ? 40 : 0), axis: (x: 10  , y: 10, z: 10))
 //                .blendMode(.hardLight)
                 .animation(.easeInOut(duration: 0.4))
+                .offset(x: viewState.width, y: viewState.height)
             
-            WelcomeCardView()
+            MainCardView()
+                .offset(x: viewState.width, y: viewState.height)
                 .rotationEffect(Angle(degrees: show ? 5 : 0))
-                .rotation3DEffect(Angle(degrees: show ? 30 : 0), axis: (x: 10  , y: 10, z: 10))
+//                .rotation3DEffect(Angle(degrees: show ? 30 : 0), axis: (x: 10  , y: 10, z: 10))
                 .animation(.spring())
                 .onTapGesture {
                     self.show.toggle()
             }
+            .gesture(
+                DragGesture()
+                    .onChanged { value in
+                        self.viewState = value.translation
+                        self.show = true
+                }
+                .onEnded { value in
+                    self.viewState = CGSize.zero
+                    self.show = false
+                }
+            )
         }
     }
 }
@@ -76,7 +91,7 @@ struct CardView: View {
     }
 }
 
-struct WelcomeCardView: View {
+struct MainCardView: View {
     var body: some View {
         VStack {
             Image("Biceps_Curl")

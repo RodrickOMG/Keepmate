@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		526090E223CF487D00ED0192 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526090E123CF487D00ED0192 /* HomeView.swift */; };
 		52B6C38123CCB0A5006B5104 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C38023CCB0A5006B5104 /* AppDelegate.swift */; };
 		52B6C38323CCB0A5006B5104 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C38223CCB0A5006B5104 /* SceneDelegate.swift */; };
 		52B6C38523CCB0A5006B5104 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C38423CCB0A5006B5104 /* ContentView.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		526090E123CF487D00ED0192 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		52B6C37D23CCB0A5006B5104 /* Keepmate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keepmate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B6C38023CCB0A5006B5104 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52B6C38223CCB0A5006B5104 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				52B6C38423CCB0A5006B5104 /* ContentView.swift */,
+				526090E123CF487D00ED0192 /* HomeView.swift */,
 				52B6C39523CCB4C1006B5104 /* LoginView.swift */,
 				52B6C39723CDA788006B5104 /* RegisterView.swift */,
 			);
@@ -163,6 +166,7 @@
 				52B6C38123CCB0A5006B5104 /* AppDelegate.swift in Sources */,
 				52B6C39823CDA788006B5104 /* RegisterView.swift in Sources */,
 				52B6C38323CCB0A5006B5104 /* SceneDelegate.swift in Sources */,
+				526090E223CF487D00ED0192 /* HomeView.swift in Sources */,
 				52B6C39623CCB4C1006B5104 /* LoginView.swift in Sources */,
 				52B6C38523CCB0A5006B5104 /* ContentView.swift in Sources */,
 			);
