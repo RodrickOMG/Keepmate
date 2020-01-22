@@ -14,9 +14,17 @@ struct HomeView: View {
     
     var body: some View {
         ZStack(alignment: .topLeading) {
+            Color("mainBackground")
+            .edgesIgnoringSafeArea(.all)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
+            .navigationBarTitle(Text(""))
+            HomeListView()
+                .blur(radius: show ? 20 : 0)
+                .scaleEffect(showProfile ? 0.95 : 1)
+                .animation(.default)
             
             ContentView()
-                .background(Color.white)
                 .cornerRadius(30)
                 .shadow(radius: 20)
                 .animation(.spring())
@@ -24,16 +32,20 @@ struct HomeView: View {
             
             HStack {
                 MenuButton(show: $show)
-                    .offset(x: -30, y: showProfile ? 0 : 80)
+                    .offset(x: showProfile ? -90 : -30, y: showProfile ? 0 : 80)
                     .animation(.spring())
                 Spacer()
                 MenuRight(show: $showProfile)
-                    .offset(x: -16, y: showProfile ? 0 : 88)
+                    .offset(x: show ? 95 : -16, y: showProfile ? 0 : 88)
                     .animation(.spring())
             }
             
             MenuView(show: $show)
         }
+        .onDisappear(perform: {
+            self.show = false
+            self.showProfile = false
+        })
     }
 }
 
@@ -76,7 +88,6 @@ let menuData = [
     Menu(title: "Categories", icon: "tag"),
     Menu(title: "Settings", icon: "gear"),
     Menu(title: "Sign out", icon: "arrow.uturn.down")
-
 ]
 
 struct MenuView: View {
@@ -97,7 +108,7 @@ struct MenuView: View {
         .background(Color.white)
         .cornerRadius(30)
         .padding(.trailing, 80)
-        .shadow(radius: 20)
+        .shadow(radius: 15)
         .rotation3DEffect(Angle(degrees: show ? 0 : 90), axis: (x : 0, y: 10, z: 0))
         .animation(.default)
         .offset(x: show ? 0 : -UIScreen.main.bounds.width)

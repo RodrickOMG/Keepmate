@@ -14,6 +14,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
+            BlurView(style: .extraLight)
             
             TitleView()
                 .blur(radius: show ? 20 : 0)
@@ -24,7 +25,7 @@ struct ContentView: View {
                 .animation(.default)
             
             CardView()
-                .background(Color("Background1"))
+                .background(Color("background1"))
                 .cornerRadius(10)
                 .shadow(radius: 20)
                 .offset(x: 0, y: show ? -400 : -44)
@@ -36,7 +37,7 @@ struct ContentView: View {
                 .offset(x: viewState.width, y: viewState.height)
             
             CardView()
-                .background(Color("Background2"))
+                .background(Color("background2"))
                 .cornerRadius(10)
                 .shadow(radius: 20)
                 .offset(x: 0, y: show ? -200 : -22)
@@ -67,6 +68,9 @@ struct ContentView: View {
                 }
             )
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+        .navigationBarTitle(Text(""))
     }
 }
 

@@ -13,10 +13,11 @@ struct LoginView: View {
     @State private var password = ""
     @State var err = ""
     @State var isPresented = false
+    @State var isLogined = false
     var body: some View {
         NavigationView {
             ZStack {
-                Color("LoginAndRegisterBkg")
+                Color("mainBackground")
                     .edgesIgnoringSafeArea(.all)
                 .navigationBarHidden(true)
                 .navigationBarTitle(Text("Home"))
@@ -54,21 +55,24 @@ struct LoginView: View {
                     .padding(.bottom, -7.0)
                     MultilineTextView(text: $err)
                         .frame(minWidth: 0, maxWidth: 280, minHeight: 0, maxHeight: 50)
-                    Button(action: {
-                        print(self.email, self.password)
-                    }) {
-                        HStack {
-                            Text("Login")
-                                .fontWeight(.bold)
-                                .font(.custom("Chalkboard SE", size: 28))
+                    NavigationLink(destination: TabBarHomeView(), isActive: $isLogined) {
+                        Button(action: {
+                            print(self.email, self.password)
+                            self.isLogined.toggle()
+                        }) {
+                            HStack {
+                                Text("Login")
+                                    .fontWeight(.bold)
+                                    .font(.custom("Chalkboard SE", size: 28))
+                            }
+                            .frame(minWidth: 0, maxWidth: 300)
+                            .padding(5)
+                            .foregroundColor(.white)
+                            .background(LinearGradient(gradient: Gradient(colors: [Color("DarkBtnBkg1"), Color("LightBtnBkg1")]), startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(40)
                         }
-                        .frame(minWidth: 0, maxWidth: 300)
-                        .padding(5)
-                        .foregroundColor(.white)
-                        .background(LinearGradient(gradient: Gradient(colors: [Color("DarkBtnBkg1"), Color("LightBtnBkg1")]), startPoint: .leading, endPoint: .trailing))
-                        .cornerRadius(40)
+                        .padding( .bottom, 50)
                     }
-                    .padding( .bottom, 50)
                     HStack(spacing: 80) {
                         NavigationLink(destination: RegisterView(isPresented: $isPresented), isActive: $isPresented){
                             Button(action: {

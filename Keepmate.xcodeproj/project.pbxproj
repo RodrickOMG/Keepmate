@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		526090E223CF487D00ED0192 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526090E123CF487D00ED0192 /* HomeView.swift */; };
+		5263E8F023D1687600866887 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263E8EF23D1687600866887 /* SettingsView.swift */; };
+		5284B1FE23D021E000220660 /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5284B1FD23D021E000220660 /* HomeListView.swift */; };
+		52A8258223D156CC00AB8CCB /* TabBarHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A8258123D156CC00AB8CCB /* TabBarHomeView.swift */; };
 		52B6C38123CCB0A5006B5104 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C38023CCB0A5006B5104 /* AppDelegate.swift */; };
 		52B6C38323CCB0A5006B5104 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C38223CCB0A5006B5104 /* SceneDelegate.swift */; };
 		52B6C38523CCB0A5006B5104 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C38423CCB0A5006B5104 /* ContentView.swift */; };
@@ -16,10 +19,15 @@
 		52B6C38D23CCB0A7006B5104 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52B6C38B23CCB0A7006B5104 /* LaunchScreen.storyboard */; };
 		52B6C39623CCB4C1006B5104 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C39523CCB4C1006B5104 /* LoginView.swift */; };
 		52B6C39823CDA788006B5104 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C39723CDA788006B5104 /* RegisterView.swift */; };
+		52E38CE123D0730600CA7D56 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E38CE023D0730600CA7D56 /* BlurView.swift */; };
+		52E38CE323D0A80500CA7D56 /* UpdateListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E38CE223D0A80500CA7D56 /* UpdateListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		526090E123CF487D00ED0192 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		5263E8EF23D1687600866887 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5284B1FD23D021E000220660 /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
+		52A8258123D156CC00AB8CCB /* TabBarHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarHomeView.swift; sourceTree = "<group>"; };
 		52B6C37D23CCB0A5006B5104 /* Keepmate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keepmate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B6C38023CCB0A5006B5104 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52B6C38223CCB0A5006B5104 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +38,8 @@
 		52B6C38E23CCB0A7006B5104 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52B6C39523CCB4C1006B5104 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		52B6C39723CDA788006B5104 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		52E38CE023D0730600CA7D56 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		52E38CE223D0A80500CA7D56 /* UpdateListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +53,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5284B1FF23D03DE800220660 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		52B6C37423CCB0A5006B5104 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +79,7 @@
 		52B6C37F23CCB0A5006B5104 /* Keepmate */ = {
 			isa = PBXGroup;
 			children = (
+				5284B1FF23D03DE800220660 /* Model */,
 				52B6C39423CCB406006B5104 /* View */,
 				52B6C38023CCB0A5006B5104 /* AppDelegate.swift */,
 				52B6C38223CCB0A5006B5104 /* SceneDelegate.swift */,
@@ -84,10 +102,15 @@
 		52B6C39423CCB406006B5104 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				52E38CE023D0730600CA7D56 /* BlurView.swift */,
 				52B6C38423CCB0A5006B5104 /* ContentView.swift */,
 				526090E123CF487D00ED0192 /* HomeView.swift */,
+				5284B1FD23D021E000220660 /* HomeListView.swift */,
 				52B6C39523CCB4C1006B5104 /* LoginView.swift */,
 				52B6C39723CDA788006B5104 /* RegisterView.swift */,
+				52E38CE223D0A80500CA7D56 /* UpdateListView.swift */,
+				52A8258123D156CC00AB8CCB /* TabBarHomeView.swift */,
+				5263E8EF23D1687600866887 /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -164,11 +187,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				52B6C38123CCB0A5006B5104 /* AppDelegate.swift in Sources */,
+				52E38CE123D0730600CA7D56 /* BlurView.swift in Sources */,
+				52E38CE323D0A80500CA7D56 /* UpdateListView.swift in Sources */,
+				5284B1FE23D021E000220660 /* HomeListView.swift in Sources */,
 				52B6C39823CDA788006B5104 /* RegisterView.swift in Sources */,
 				52B6C38323CCB0A5006B5104 /* SceneDelegate.swift in Sources */,
 				526090E223CF487D00ED0192 /* HomeView.swift in Sources */,
 				52B6C39623CCB4C1006B5104 /* LoginView.swift in Sources */,
+				52A8258223D156CC00AB8CCB /* TabBarHomeView.swift in Sources */,
 				52B6C38523CCB0A5006B5104 /* ContentView.swift in Sources */,
+				5263E8F023D1687600866887 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,14 +14,14 @@ struct RegisterView: View {
     @State private var username = ""
     @State var err = ""
     @Binding var isPresented: Bool
+    @State var viewState = CGSize.zero // position
     var body: some View {
         ZStack {
-            Color("LoginAndRegisterBkg")
-                .edgesIgnoringSafeArea(.all)
+            Color("mainBackground")
+            .edgesIgnoringSafeArea(.all)
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-            .navigationBarTitle(Text("Home"))
-            .edgesIgnoringSafeArea([.top, .bottom])
+            .navigationBarTitle(Text(""))
             VStack {
                 Button(action: {
                     self.isPresented.toggle()
@@ -30,9 +30,8 @@ struct RegisterView: View {
                         .font(.system(size: 20))
                         .foregroundColor(Color("BackBtn1"))
                     
-                }
+                }.frame(width: 30, height: 30)
             }
-            .frame(width: 30, height: 30, alignment: .topLeading)
             .position(x: 30, y: 20)
             VStack {
                 Text("Keepmate")
@@ -93,10 +92,22 @@ struct RegisterView: View {
                     .cornerRadius(40)
                 }
             }
-            // end of the view
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: Alignment.top)
-            
+                // end of the view
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: Alignment.top)
         }
+        .gesture(  // swipe to back
+            DragGesture()
+                .onChanged { value in
+                    self.viewState = value.translation
+            }
+            .onEnded { value in
+                if self.viewState.width > 0 && abs(self.viewState.height) < 50{
+                    self.viewState = CGSize.zero
+                    self.isPresented.toggle()
+                }
+                self.viewState = CGSize.zero
+            }
+        )
     }
 }
 #if DEBUG
