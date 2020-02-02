@@ -7,32 +7,50 @@
 //
 
 import SwiftUI
+import BottomBar_SwiftUI
 
-struct TabBarHomeView: View {
-    @State private var currentTab = 2
+let items: [BottomBarItem] = [
+    BottomBarItem(icon: "house.fill", title: "Home", color: Color("Font1")),
+    BottomBarItem(icon: "heart", title: "Likes", color: .pink),
+    BottomBarItem(icon: "magnifyingglass", title: "Search", color: .green),
+    BottomBarItem(icon: "person.fill", title: "Profile", color: .orange                               )
+]
+
+struct BasicView: View {
+    let item: BottomBarItem
+    let index: Int
+    
+    func openTwitter() {
+        guard let url = URL(string: "https://twitter.com/smartvipere75") else {
+            return
+        }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
     var body: some View {
-        ZStack {
-            Color("mainBackground")
-            .edgesIgnoringSafeArea(.top)
-            TabView(selection: $currentTab) {
-                ContentView().tabItem {
-                    VStack {
-                        Image(systemName: "person")
-                        Text("Profile")
-                    }
-                }.tag(1)
-                HomeView().tabItem {
-                    VStack {
-                        Image(systemName: "house")
-                        Text("Home")
-                    }
-                }.tag(2)
-                SettingsView().tabItem {
-                    VStack {
-                        Image(systemName: "gear")
-                        Text("Settings")
-                    }
-                }.tag(3)
+        VStack {
+            if index == 0 {
+                HomeView()
+            } else if index == 3 {
+                ContentView()
+            }
+        }
+    }
+}
+
+struct TabBarHomeView : View {
+    @State private var selectedIndex: Int = 0
+    
+    var selectedItem: BottomBarItem {
+        items[selectedIndex]
+    }
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+                BasicView(item: selectedItem, index: selectedIndex)
+                    .navigationBarTitle(Text(selectedItem.title))
+                BottomBar(selectedIndex: $selectedIndex, items: items)
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -52,3 +70,4 @@ struct TabBarView_Previews: PreviewProvider {
         }
     }
 }
+

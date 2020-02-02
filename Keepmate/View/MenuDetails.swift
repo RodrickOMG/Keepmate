@@ -1,0 +1,28 @@
+//
+//  MenuDetails.swift
+//  Keepmate
+//
+//  Created by Rodrick Dai on 2020/2/2.
+//  Copyright © 2020 Rodrick Dai. All rights reserved.
+//
+
+import SwiftUI
+
+struct MenuDetails: View {
+    @Environment(\.presentationMode) var presentation
+    @Binding var selectedItem: Int
+
+    var body: some View {
+        Group {
+            if selectedItem == 1 {
+                SettingsView()
+            }
+        }
+    }
+}
+
+struct MenuDetails_Previews: PreviewProvider {
+    static var previews: some View {
+        MenuDetails(selectedItem: .constant(1))
+    }
+}

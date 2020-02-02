@@ -14,59 +14,64 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            BlurView(style: .extraLight)
-            
-            TitleView()
-                .blur(radius: show ? 20 : 0)
-                .animation(.default)
-            
-            CardBottomView()
-                .blur(radius: show ? 20 : 0)
-                .animation(.default)
-            
-            CardView()
-                .background(Color("background1"))
-                .cornerRadius(10)
-                .shadow(radius: 20)
-                .offset(x: 0, y: show ? -400 : -44)
-                .scaleEffect(0.85)
-                .rotationEffect(Angle(degrees: show ? 15 : 0))
-//                .rotation3DEffect(Angle(degrees: show ? 50 : 0), axis: (x: 10  , y: 10, z: 10))
-//                .blendMode(.hardLight)
-                .animation(.easeInOut(duration: 0.6))
-                .offset(x: viewState.width, y: viewState.height)
-            
-            CardView()
-                .background(Color("background2"))
-                .cornerRadius(10)
-                .shadow(radius: 20)
-                .offset(x: 0, y: show ? -200 : -22)
-                .scaleEffect(0.9)
-                .rotationEffect(Angle(degrees: show ? 10 : 0))
-//                .rotation3DEffect(Angle(degrees: show ? 40 : 0), axis: (x: 10  , y: 10, z: 10))
-//                .blendMode(.hardLight)
-                .animation(.easeInOut(duration: 0.4))
-                .offset(x: viewState.width, y: viewState.height)
-            
-            MainCardView()
-                .offset(x: viewState.width, y: viewState.height)
-                .rotationEffect(Angle(degrees: show ? 5 : 0))
-//                .rotation3DEffect(Angle(degrees: show ? 30 : 0), axis: (x: 10  , y: 10, z: 10))
-                .animation(.spring())
-                .onTapGesture {
-                    self.show.toggle()
+            Color("mainBackground")
+                .edgesIgnoringSafeArea(.all)
+            Group{
+                BlurView(style: .systemMaterial)
+                
+                TitleView()
+                    .blur(radius: show ? 20 : 0)
+                    .animation(.default)
+                
+                CardBottomView()
+                    .blur(radius: show ? 20 : 0)
+                    .animation(.default)
+                
+                CardView()
+                    .background(Color("background1"))
+                    .cornerRadius(10)
+                    .shadow(radius: 20)
+                    .offset(x: 0, y: show ? -400 : -44)
+                    .scaleEffect(0.85)
+                    .rotationEffect(Angle(degrees: show ? 15 : 0))
+                    //                .rotation3DEffect(Angle(degrees: show ? 50 : 0), axis: (x: 10  , y: 10, z: 10))
+                    //                .blendMode(.hardLight)
+                    .animation(.easeInOut(duration: 0.6))
+                    .offset(x: viewState.width, y: viewState.height)
+                
+                CardView()
+                    .background(Color("background2"))
+                    .cornerRadius(10)
+                    .shadow(radius: 20)
+                    .offset(x: 0, y: show ? -200 : -22)
+                    .scaleEffect(0.9)
+                    .rotationEffect(Angle(degrees: show ? 10 : 0))
+                    //                .rotation3DEffect(Angle(degrees: show ? 40 : 0), axis: (x: 10  , y: 10, z: 10))
+                    //                .blendMode(.hardLight)
+                    .animation(.easeInOut(duration: 0.4))
+                    .offset(x: viewState.width, y: viewState.height)
+                
+                MainCardView()
+                    .offset(x: viewState.width, y: viewState.height)
+                    .rotationEffect(Angle(degrees: show ? 5 : 0))
+                    //                .rotation3DEffect(Angle(degrees: show ? 30 : 0), axis: (x: 10  , y: 10, z: 10))
+                    .animation(.spring())
+                    .onTapGesture {
+                        self.show.toggle()
+                }
+                .gesture(
+                    DragGesture()
+                        .onChanged { value in
+                            self.viewState = value.translation
+                            self.show = true
+                    }
+                    .onEnded { value in
+                        self.viewState = CGSize.zero
+                        self.show = false
+                    }
+                )
             }
-            .gesture(
-                DragGesture()
-                    .onChanged { value in
-                        self.viewState = value.translation
-                        self.show = true
-                }
-                .onEnded { value in
-                    self.viewState = CGSize.zero
-                    self.show = false
-                }
-            )
+            
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
@@ -139,7 +144,7 @@ struct CardBottomView: View {
         .frame(minWidth: 0, maxWidth: .infinity)
         .padding()
         .padding(.horizontal)
-        .background(Color.white)
+        .background(BlurView(style: .systemMaterial))
         .cornerRadius(30)
         .shadow(radius: 20)
         .offset(y: 600)

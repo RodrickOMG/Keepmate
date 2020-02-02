@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,9 @@
 		52B6C38D23CCB0A7006B5104 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52B6C38B23CCB0A7006B5104 /* LaunchScreen.storyboard */; };
 		52B6C39623CCB4C1006B5104 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C39523CCB4C1006B5104 /* LoginView.swift */; };
 		52B6C39823CDA788006B5104 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C39723CDA788006B5104 /* RegisterView.swift */; };
+		52E157FA23E67D5400A35113 /* BottomBar-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 52E157F923E67D5400A35113 /* BottomBar-SwiftUI */; };
+		52E157FC23E6E9C800A35113 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E157FB23E6E9C800A35113 /* Constant.swift */; };
+		52E157FE23E6F52500A35113 /* MenuDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E157FD23E6F52500A35113 /* MenuDetails.swift */; };
 		52E38CE123D0730600CA7D56 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E38CE023D0730600CA7D56 /* BlurView.swift */; };
 		52E38CE323D0A80500CA7D56 /* UpdateListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E38CE223D0A80500CA7D56 /* UpdateListView.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +41,8 @@
 		52B6C38E23CCB0A7006B5104 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52B6C39523CCB4C1006B5104 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		52B6C39723CDA788006B5104 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		52E157FB23E6E9C800A35113 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		52E157FD23E6F52500A35113 /* MenuDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetails.swift; sourceTree = "<group>"; };
 		52E38CE023D0730600CA7D56 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		52E38CE223D0A80500CA7D56 /* UpdateListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -47,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52E157FA23E67D5400A35113 /* BottomBar-SwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,12 +111,14 @@
 				52E38CE023D0730600CA7D56 /* BlurView.swift */,
 				52B6C38423CCB0A5006B5104 /* ContentView.swift */,
 				526090E123CF487D00ED0192 /* HomeView.swift */,
+				52E157FB23E6E9C800A35113 /* Constant.swift */,
 				5284B1FD23D021E000220660 /* HomeListView.swift */,
 				52B6C39523CCB4C1006B5104 /* LoginView.swift */,
 				52B6C39723CDA788006B5104 /* RegisterView.swift */,
 				52E38CE223D0A80500CA7D56 /* UpdateListView.swift */,
 				52A8258123D156CC00AB8CCB /* TabBarHomeView.swift */,
 				5263E8EF23D1687600866887 /* SettingsView.swift */,
+				52E157FD23E6F52500A35113 /* MenuDetails.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -131,6 +139,9 @@
 			dependencies = (
 			);
 			name = Keepmate;
+			packageProductDependencies = (
+				52E157F923E67D5400A35113 /* BottomBar-SwiftUI */,
+			);
 			productName = Keepmate;
 			productReference = 52B6C37D23CCB0A5006B5104 /* Keepmate.app */;
 			productType = "com.apple.product-type.application";
@@ -159,6 +170,9 @@
 				Base,
 			);
 			mainGroup = 52B6C37423CCB0A5006B5104;
+			packageReferences = (
+				52E157F823E67D5400A35113 /* XCRemoteSwiftPackageReference "bottombar-swiftui" */,
+			);
 			productRefGroup = 52B6C37E23CCB0A5006B5104 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -191,12 +205,14 @@
 				52E38CE323D0A80500CA7D56 /* UpdateListView.swift in Sources */,
 				5284B1FE23D021E000220660 /* HomeListView.swift in Sources */,
 				52B6C39823CDA788006B5104 /* RegisterView.swift in Sources */,
+				52E157FE23E6F52500A35113 /* MenuDetails.swift in Sources */,
 				52B6C38323CCB0A5006B5104 /* SceneDelegate.swift in Sources */,
 				526090E223CF487D00ED0192 /* HomeView.swift in Sources */,
 				52B6C39623CCB4C1006B5104 /* LoginView.swift in Sources */,
 				52A8258223D156CC00AB8CCB /* TabBarHomeView.swift in Sources */,
 				52B6C38523CCB0A5006B5104 /* ContentView.swift in Sources */,
 				5263E8F023D1687600866887 /* SettingsView.swift in Sources */,
+				52E157FC23E6E9C800A35113 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +406,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		52E157F823E67D5400A35113 /* XCRemoteSwiftPackageReference "bottombar-swiftui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/smartvipere75/bottombar-swiftui";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		52E157F923E67D5400A35113 /* BottomBar-SwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52E157F823E67D5400A35113 /* XCRemoteSwiftPackageReference "bottombar-swiftui" */;
+			productName = "BottomBar-SwiftUI";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 52B6C37523CCB0A5006B5104 /* Project object */;
 }

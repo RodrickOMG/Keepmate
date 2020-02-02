@@ -31,18 +31,6 @@ struct HomeListView: View {
     }
 }
 
-struct HomeListView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group{
-            HomeListView().previewDevice("iPhone Xs Max")
-            HomeListView().previewDevice("iPhone 11 Pro")
-            HomeListView().previewDevice("iPhone 11")
-                .environment(\.colorScheme, .dark)
-            HomeListView().previewDevice("iPhone 8")
-        }
-    }
-}
-
 struct WorkoutCardView: View {
     var text = "Biceps Curl"
     var image = "Biceps_Curl_Person"
@@ -95,13 +83,6 @@ struct WorkoutCardScrollView: View {
 }
 
 
-struct WorkoutItemCard : Identifiable {
-    var id = UUID()
-    var title : String
-    var imageName : String
-    var backgroundColor : Color
-    var backgroundShadowColor : Color
-}
 
 let workoutItemData = [
     WorkoutItemCard(title: "Biceps Curl", imageName: "Biceps_Curl_Person", backgroundColor: Color("background3"), backgroundShadowColor: Color("backgroundShadow3")),
@@ -110,3 +91,16 @@ let workoutItemData = [
     WorkoutItemCard(title: "Dumbbell Shoulder Press", imageName: "Dumbbell_Shoulder_Press_Person", backgroundColor: Color("background4"), backgroundShadowColor: Color("backgroundShadow4")),
 ]
 
+#if DEBUG
+struct HomeListView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group{
+            HomeListView().previewDevice("iPhone Xs Max")
+            HomeListView().previewDevice("iPhone 11 Pro")
+            HomeListView().previewDevice("iPhone 11")
+                .environment(\.colorScheme, .dark)
+            HomeListView().previewDevice("iPhone 8")
+        }
+    }
+}
+#endif

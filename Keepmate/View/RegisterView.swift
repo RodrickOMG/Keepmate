@@ -19,9 +19,7 @@ struct RegisterView: View {
         ZStack {
             Color("mainBackground")
             .edgesIgnoringSafeArea(.all)
-            .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
-            .navigationBarTitle(Text(""))
+            
             VStack {
                 Button(action: {
                     self.isPresented.toggle()
@@ -95,18 +93,21 @@ struct RegisterView: View {
                 // end of the view
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: Alignment.top)
         }
-        .gesture(  // swipe to back
-            DragGesture()
-                .onChanged { value in
-                    self.viewState = value.translation
-            }
-            .onEnded { value in
-                if self.viewState.width > 0 && abs(self.viewState.height) < 50{
-                    self.viewState = CGSize.zero
-                    self.isPresented.toggle()
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+        .navigationBarTitle(Text(""))
+            .gesture(  // swipe to back
+                DragGesture()
+                    .onChanged { value in
+                        self.viewState = value.translation
                 }
-                self.viewState = CGSize.zero
-            }
+                .onEnded { value in
+                    if self.viewState.width > 0 && abs(self.viewState.height) < 50{
+                        self.viewState = CGSize.zero
+                        self.isPresented.toggle()
+                    }
+                    self.viewState = CGSize.zero
+                }
         )
     }
 }
