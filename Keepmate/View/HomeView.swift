@@ -57,7 +57,7 @@ struct MenuRow: View {
     @State var selection = 1
     
     var body: some View {
-        NavigationLink(destination: MenuDetails(selectedItem: $selection), isActive: $isPresented) {
+        NavigationLink(destination: MenuDetails(selectedItem: $selection, isPresented: $isPresented), isActive: $isPresented) {
             HStack {
                 Button(action: {
                     if self.text == "Settings" {
