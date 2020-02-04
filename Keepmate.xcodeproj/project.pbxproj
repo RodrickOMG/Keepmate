@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		523D5F4323E92D81005418D5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D5F4223E92D81005418D5 /* ProfileView.swift */; };
 		526090E223CF487D00ED0192 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526090E123CF487D00ED0192 /* HomeView.swift */; };
 		5263E8F023D1687600866887 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263E8EF23D1687600866887 /* SettingsView.swift */; };
 		5284B1FE23D021E000220660 /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5284B1FD23D021E000220660 /* HomeListView.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		523D5F4223E92D81005418D5 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		526090E123CF487D00ED0192 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5263E8EF23D1687600866887 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5284B1FD23D021E000220660 /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				52E38CE023D0730600CA7D56 /* BlurView.swift */,
+				523D5F4223E92D81005418D5 /* ProfileView.swift */,
 				52B6C38423CCB0A5006B5104 /* ContentView.swift */,
 				526090E123CF487D00ED0192 /* HomeView.swift */,
 				52E157FB23E6E9C800A35113 /* Constant.swift */,
@@ -212,6 +215,7 @@
 				52A8258223D156CC00AB8CCB /* TabBarHomeView.swift in Sources */,
 				52B6C38523CCB0A5006B5104 /* ContentView.swift in Sources */,
 				5263E8F023D1687600866887 /* SettingsView.swift in Sources */,
+				523D5F4323E92D81005418D5 /* ProfileView.swift in Sources */,
 				52E157FC23E6E9C800A35113 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

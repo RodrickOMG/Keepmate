@@ -57,8 +57,9 @@ struct MenuRow: View {
     @State var selection = 1
     
     var body: some View {
-        NavigationLink(destination: MenuDetails(selectedItem: $selection, isPresented: $isPresented), isActive: $isPresented) {
-            HStack {
+        
+        HStack {
+            NavigationLink(destination: MenuDetails(selectedItem: $selection, isPresented: $isPresented), isActive: $isPresented) {
                 Button(action: {
                     if self.text == "Settings" {
                         self.selection = 1
@@ -72,9 +73,8 @@ struct MenuRow: View {
                     Text(text)
                         .font(.headline)
                 }
-                Spacer()
             }
-            
+            Spacer()
         }
     }
 }

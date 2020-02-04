@@ -79,17 +79,6 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group{
-            ContentView().previewDevice("iPhone Xs Max")
-            ContentView().previewDevice("iPhone 11 Pro")
-            ContentView().previewDevice("iPhone 11")
-                .environment(\.colorScheme, .dark)
-            ContentView().previewDevice("iPhone 8")
-        }
-    }
-}
 
 struct CardView: View {
     var body: some View {
@@ -148,5 +137,17 @@ struct CardBottomView: View {
         .cornerRadius(30)
         .shadow(radius: 20)
         .offset(y: 600)
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group{
+            ContentView().previewDevice("iPhone Xs Max")
+            ContentView().previewDevice("iPhone 11 Pro")
+            ContentView().previewDevice("iPhone 11")
+                .environment(\.colorScheme, .dark)
+            ContentView().previewDevice("iPhone 8")
+        }
     }
 }

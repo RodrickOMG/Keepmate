@@ -20,7 +20,7 @@ struct LoginView: View {
                 Color("mainBackground")
                     .edgesIgnoringSafeArea(.all)
                 .navigationBarHidden(true)
-                .navigationBarTitle(Text("Home"))
+                .navigationBarTitle(Text(""))
                 .edgesIgnoringSafeArea([.top, .bottom])
                 VStack {
                     Text("Keepmate")
