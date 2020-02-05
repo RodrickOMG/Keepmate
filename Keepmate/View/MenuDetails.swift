@@ -17,6 +17,8 @@ struct MenuDetails: View {
         Group {
             if selectedItem == 1 {
                 SettingsView(isPresented: $isPresented)
+            } else if selectedItem == 0 {
+                ProfileView(isPresented: $isPresented)
             }
         }
         .navigationBarTitle(Text(""))

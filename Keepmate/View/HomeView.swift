@@ -61,7 +61,9 @@ struct MenuRow: View {
         HStack {
             NavigationLink(destination: MenuDetails(selectedItem: $selection, isPresented: $isPresented), isActive: $isPresented) {
                 Button(action: {
-                    if self.text == "Settings" {
+                    if self.text == "Profile" {
+                        self.selection = 0
+                    } else if self.text == "Settings" {
                         self.selection = 1
                     }
                     self.isPresented.toggle()
@@ -81,7 +83,7 @@ struct MenuRow: View {
 
 
 let menuData = [
-    Menu(title: "My Account", icon: "person.crop.circle"),
+    Menu(title: "Profile", icon: "person.crop.circle"),
     Menu(title: "Categories", icon: "tag"),
     Menu(title: "Settings", icon: "gear"),
     Menu(title: "Sign out", icon: "arrow.uturn.down")
