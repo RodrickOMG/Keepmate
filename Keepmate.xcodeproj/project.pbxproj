@@ -3,24 +3,28 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		487501672B693B41A6DA71AD /* Pods_Keepmate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B250FB8F4507C223B3A3E1 /* Pods_Keepmate.framework */; };
 		523D5F4323E92D81005418D5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D5F4223E92D81005418D5 /* ProfileView.swift */; };
+		5259E25323F3B3F700260694 /* BWWalkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5259E25223F3B3F700260694 /* BWWalkthrough.storyboard */; };
+		5259E25C23F3B82000260694 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5259E25B23F3B82000260694 /* Utilities.swift */; };
 		526090E223CF487D00ED0192 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526090E123CF487D00ED0192 /* HomeView.swift */; };
 		5263E8F023D1687600866887 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263E8EF23D1687600866887 /* SettingsView.swift */; };
 		5284B1FE23D021E000220660 /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5284B1FD23D021E000220660 /* HomeListView.swift */; };
+		52A2548D23F4565D00652D7C /* BottomBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2548A23F4565D00652D7C /* BottomBarItem.swift */; };
+		52A2548E23F4565D00652D7C /* BottomBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2548B23F4565D00652D7C /* BottomBarItemView.swift */; };
+		52A2548F23F4565D00652D7C /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2548C23F4565D00652D7C /* BottomBar.swift */; };
 		52A8258223D156CC00AB8CCB /* TabBarHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A8258123D156CC00AB8CCB /* TabBarHomeView.swift */; };
 		52B6C38123CCB0A5006B5104 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C38023CCB0A5006B5104 /* AppDelegate.swift */; };
 		52B6C38323CCB0A5006B5104 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C38223CCB0A5006B5104 /* SceneDelegate.swift */; };
 		52B6C38523CCB0A5006B5104 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C38423CCB0A5006B5104 /* ContentView.swift */; };
 		52B6C38723CCB0A7006B5104 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52B6C38623CCB0A7006B5104 /* Assets.xcassets */; };
-		52B6C38A23CCB0A7006B5104 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52B6C38923CCB0A7006B5104 /* Preview Assets.xcassets */; };
 		52B6C38D23CCB0A7006B5104 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52B6C38B23CCB0A7006B5104 /* LaunchScreen.storyboard */; };
 		52B6C39623CCB4C1006B5104 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C39523CCB4C1006B5104 /* LoginView.swift */; };
 		52B6C39823CDA788006B5104 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C39723CDA788006B5104 /* RegisterView.swift */; };
-		52E157FA23E67D5400A35113 /* BottomBar-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 52E157F923E67D5400A35113 /* BottomBar-SwiftUI */; };
 		52E157FC23E6E9C800A35113 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E157FB23E6E9C800A35113 /* Constant.swift */; };
 		52E157FE23E6F52500A35113 /* MenuDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E157FD23E6F52500A35113 /* MenuDetails.swift */; };
 		52E38CE123D0730600CA7D56 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E38CE023D0730600CA7D56 /* BlurView.swift */; };
@@ -29,16 +33,21 @@
 
 /* Begin PBXFileReference section */
 		523D5F4223E92D81005418D5 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		5259E24E23F3B31600260694 /* Keepmate-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Keepmate-Bridging-Header.h"; sourceTree = "<group>"; };
+		5259E25223F3B3F700260694 /* BWWalkthrough.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BWWalkthrough.storyboard; sourceTree = "<group>"; };
+		5259E25B23F3B82000260694 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		526090E123CF487D00ED0192 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5263E8EF23D1687600866887 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5284B1FD23D021E000220660 /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
+		52A2548A23F4565D00652D7C /* BottomBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarItem.swift; sourceTree = "<group>"; };
+		52A2548B23F4565D00652D7C /* BottomBarItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarItemView.swift; sourceTree = "<group>"; };
+		52A2548C23F4565D00652D7C /* BottomBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		52A8258123D156CC00AB8CCB /* TabBarHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarHomeView.swift; sourceTree = "<group>"; };
 		52B6C37D23CCB0A5006B5104 /* Keepmate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keepmate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B6C38023CCB0A5006B5104 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52B6C38223CCB0A5006B5104 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		52B6C38423CCB0A5006B5104 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		52B6C38623CCB0A7006B5104 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		52B6C38923CCB0A7006B5104 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		52B6C38C23CCB0A7006B5104 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52B6C38E23CCB0A7006B5104 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52B6C39523CCB4C1006B5104 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -47,6 +56,9 @@
 		52E157FD23E6F52500A35113 /* MenuDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetails.swift; sourceTree = "<group>"; };
 		52E38CE023D0730600CA7D56 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		52E38CE223D0A80500CA7D56 /* UpdateListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateListView.swift; sourceTree = "<group>"; };
+		6CD592B6EC32EAA7DC843147 /* Pods-Keepmate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keepmate.debug.xcconfig"; path = "Target Support Files/Pods-Keepmate/Pods-Keepmate.debug.xcconfig"; sourceTree = "<group>"; };
+		BA2226C55AE9AD5C95A50CA6 /* Pods-Keepmate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keepmate.release.xcconfig"; path = "Target Support Files/Pods-Keepmate/Pods-Keepmate.release.xcconfig"; sourceTree = "<group>"; };
+		E8B250FB8F4507C223B3A3E1 /* Pods_Keepmate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Keepmate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,18 +66,70 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52E157FA23E67D5400A35113 /* BottomBar-SwiftUI in Frameworks */,
+				487501672B693B41A6DA71AD /* Pods_Keepmate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5284B1FF23D03DE800220660 /* Model */ = {
+		1872B0F82DEC7A075710719C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E8B250FB8F4507C223B3A3E1 /* Pods_Keepmate.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5259E24C23F3B2C400260694 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
 			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		5259E24D23F3B2D300260694 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				52B6C38023CCB0A5006B5104 /* AppDelegate.swift */,
+				5259E24E23F3B31600260694 /* Keepmate-Bridging-Header.h */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5259E25123F3B3B200260694 /* GuidingViews */ = {
+			isa = PBXGroup;
+			children = (
+				5259E25223F3B3F700260694 /* BWWalkthrough.storyboard */,
+			);
+			path = GuidingViews;
+			sourceTree = "<group>";
+		};
+		5259E25A23F3B52100260694 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				52E157FB23E6E9C800A35113 /* Constant.swift */,
+				5259E25B23F3B82000260694 /* Utilities.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		5284B1FF23D03DE800220660 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5259E24C23F3B2C400260694 /* New Group */,
+			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		52A2548923F4564800652D7C /* BottomBar */ = {
+			isa = PBXGroup;
+			children = (
+				52A2548C23F4565D00652D7C /* BottomBar.swift */,
+				52A2548A23F4565D00652D7C /* BottomBarItem.swift */,
+				52A2548B23F4565D00652D7C /* BottomBarItemView.swift */,
+			);
+			path = BottomBar;
 			sourceTree = "<group>";
 		};
 		52B6C37423CCB0A5006B5104 = {
@@ -73,6 +137,8 @@
 			children = (
 				52B6C37F23CCB0A5006B5104 /* Keepmate */,
 				52B6C37E23CCB0A5006B5104 /* Products */,
+				FF16710B1C914A311E41D57C /* Pods */,
+				1872B0F82DEC7A075710719C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,34 +153,28 @@
 		52B6C37F23CCB0A5006B5104 /* Keepmate */ = {
 			isa = PBXGroup;
 			children = (
+				52FC102B23F46503008A06C1 /* Preview Content */,
+				5259E25A23F3B52100260694 /* Utilities */,
+				52B6C38E23CCB0A7006B5104 /* Info.plist */,
+				5259E24D23F3B2D300260694 /* Supporting Files */,
 				5284B1FF23D03DE800220660 /* Model */,
 				52B6C39423CCB406006B5104 /* View */,
-				52B6C38023CCB0A5006B5104 /* AppDelegate.swift */,
 				52B6C38223CCB0A5006B5104 /* SceneDelegate.swift */,
 				52B6C38623CCB0A7006B5104 /* Assets.xcassets */,
 				52B6C38B23CCB0A7006B5104 /* LaunchScreen.storyboard */,
-				52B6C38E23CCB0A7006B5104 /* Info.plist */,
-				52B6C38823CCB0A7006B5104 /* Preview Content */,
 			);
 			path = Keepmate;
-			sourceTree = "<group>";
-		};
-		52B6C38823CCB0A7006B5104 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				52B6C38923CCB0A7006B5104 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		52B6C39423CCB406006B5104 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				52A2548923F4564800652D7C /* BottomBar */,
+				5259E25123F3B3B200260694 /* GuidingViews */,
 				52E38CE023D0730600CA7D56 /* BlurView.swift */,
 				523D5F4223E92D81005418D5 /* ProfileView.swift */,
 				52B6C38423CCB0A5006B5104 /* ContentView.swift */,
 				526090E123CF487D00ED0192 /* HomeView.swift */,
-				52E157FB23E6E9C800A35113 /* Constant.swift */,
 				5284B1FD23D021E000220660 /* HomeListView.swift */,
 				52B6C39523CCB4C1006B5104 /* LoginView.swift */,
 				52B6C39723CDA788006B5104 /* RegisterView.swift */,
@@ -126,6 +186,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		52FC102B23F46503008A06C1 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FF16710B1C914A311E41D57C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6CD592B6EC32EAA7DC843147 /* Pods-Keepmate.debug.xcconfig */,
+				BA2226C55AE9AD5C95A50CA6 /* Pods-Keepmate.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -133,6 +209,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52B6C39123CCB0A7006B5104 /* Build configuration list for PBXNativeTarget "Keepmate" */;
 			buildPhases = (
+				625A01C01B42E7C7ADCCF9B1 /* [CP] Check Pods Manifest.lock */,
 				52B6C37923CCB0A5006B5104 /* Sources */,
 				52B6C37A23CCB0A5006B5104 /* Frameworks */,
 				52B6C37B23CCB0A5006B5104 /* Resources */,
@@ -142,9 +219,6 @@
 			dependencies = (
 			);
 			name = Keepmate;
-			packageProductDependencies = (
-				52E157F923E67D5400A35113 /* BottomBar-SwiftUI */,
-			);
 			productName = Keepmate;
 			productReference = 52B6C37D23CCB0A5006B5104 /* Keepmate.app */;
 			productType = "com.apple.product-type.application";
@@ -161,6 +235,7 @@
 				TargetAttributes = {
 					52B6C37C23CCB0A5006B5104 = {
 						CreatedOnToolsVersion = 11.3;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -173,9 +248,6 @@
 				Base,
 			);
 			mainGroup = 52B6C37423CCB0A5006B5104;
-			packageReferences = (
-				52E157F823E67D5400A35113 /* XCRemoteSwiftPackageReference "bottombar-swiftui" */,
-			);
 			productRefGroup = 52B6C37E23CCB0A5006B5104 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -190,13 +262,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5259E25323F3B3F700260694 /* BWWalkthrough.storyboard in Resources */,
 				52B6C38D23CCB0A7006B5104 /* LaunchScreen.storyboard in Resources */,
-				52B6C38A23CCB0A7006B5104 /* Preview Assets.xcassets in Resources */,
 				52B6C38723CCB0A7006B5104 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		625A01C01B42E7C7ADCCF9B1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Keepmate-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		52B6C37923CCB0A5006B5104 /* Sources */ = {
@@ -205,10 +302,14 @@
 			files = (
 				52B6C38123CCB0A5006B5104 /* AppDelegate.swift in Sources */,
 				52E38CE123D0730600CA7D56 /* BlurView.swift in Sources */,
+				52A2548F23F4565D00652D7C /* BottomBar.swift in Sources */,
 				52E38CE323D0A80500CA7D56 /* UpdateListView.swift in Sources */,
+				5259E25C23F3B82000260694 /* Utilities.swift in Sources */,
 				5284B1FE23D021E000220660 /* HomeListView.swift in Sources */,
+				52A2548E23F4565D00652D7C /* BottomBarItemView.swift in Sources */,
 				52B6C39823CDA788006B5104 /* RegisterView.swift in Sources */,
 				52E157FE23E6F52500A35113 /* MenuDetails.swift in Sources */,
+				52A2548D23F4565D00652D7C /* BottomBarItem.swift in Sources */,
 				52B6C38323CCB0A5006B5104 /* SceneDelegate.swift in Sources */,
 				526090E223CF487D00ED0192 /* HomeView.swift in Sources */,
 				52B6C39623CCB4C1006B5104 /* LoginView.swift in Sources */,
@@ -350,9 +451,12 @@
 		};
 		52B6C39223CCB0A7006B5104 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CD592B6EC32EAA7DC843147 /* Pods-Keepmate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_ASSET_PATHS = "\"Keepmate/Preview Content\"";
 				DEVELOPMENT_TEAM = YZCDVJBQY3;
 				ENABLE_PREVIEWS = YES;
@@ -363,16 +467,22 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Rodrick.Keepmate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Keepmate/Supporting Files/Keepmate-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};
 			name = Debug;
 		};
 		52B6C39323CCB0A7006B5104 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA2226C55AE9AD5C95A50CA6 /* Pods-Keepmate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_ASSET_PATHS = "\"Keepmate/Preview Content\"";
 				DEVELOPMENT_TEAM = YZCDVJBQY3;
 				ENABLE_PREVIEWS = YES;
@@ -383,8 +493,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Rodrick.Keepmate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Keepmate/Supporting Files/Keepmate-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};
 			name = Release;
 		};
@@ -410,25 +522,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		52E157F823E67D5400A35113 /* XCRemoteSwiftPackageReference "bottombar-swiftui" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/smartvipere75/bottombar-swiftui";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		52E157F923E67D5400A35113 /* BottomBar-SwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 52E157F823E67D5400A35113 /* XCRemoteSwiftPackageReference "bottombar-swiftui" */;
-			productName = "BottomBar-SwiftUI";
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 52B6C37523CCB0A5006B5104 /* Project object */;
 }

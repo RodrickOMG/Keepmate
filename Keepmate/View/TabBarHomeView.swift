@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import BottomBar_SwiftUI
 
 let items: [BottomBarItem] = [
     BottomBarItem(icon: "house.fill", title: "Home", color: Color("Font1")),

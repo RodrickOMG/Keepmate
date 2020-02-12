@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Walkthrough View Controller-->
+        <scene sceneID="bWH-ML-ue3">
+            <objects>
+                <viewController storyboardIdentifier="walk" id="Fpu-hg-sTG" customClass="BWWalkthroughViewController" customModule="Keepmate" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gzU-Yh-Tp5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxv-U4-cXZ">
+                                <rect key="frame" x="309" y="728" width="50" height="50"/>
+                                <state key="normal" image="rightarrow"/>
+                                <connections>
+                                    <action selector="nextPage" destination="Fpu-hg-sTG" eventType="touchUpInside" id="dqK-Co-xye"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zI-bk-OKu">
+                                <rect key="frame" x="16" y="728" width="50" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" image="leftarrow"/>
+                                <connections>
+                                    <action selector="prevPage" destination="Fpu-hg-sTG" eventType="touchUpInside" id="YMB-rO-Hwp"/>
+                                </connections>
+                            </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="SL9-q8-ouI">
+                                <rect key="frame" x="168" y="661" width="39" height="37"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="SL9-q8-ouI" firstAttribute="leading" secondItem="zP5-pH-ZxI" secondAttribute="leading" constant="168" id="JL0-Us-Mz8"/>
+                            <constraint firstItem="zP5-pH-ZxI" firstAttribute="bottom" secondItem="sxv-U4-cXZ" secondAttribute="bottom" id="NNg-AI-YqI"/>
+                            <constraint firstItem="zP5-pH-ZxI" firstAttribute="trailing" secondItem="sxv-U4-cXZ" secondAttribute="trailing" constant="16" id="VLU-2z-kda"/>
+                            <constraint firstItem="zP5-pH-ZxI" firstAttribute="trailing" secondItem="SL9-q8-ouI" secondAttribute="trailing" constant="168" id="XTh-dK-moP"/>
+                            <constraint firstItem="zP5-pH-ZxI" firstAttribute="bottom" secondItem="8zI-bk-OKu" secondAttribute="bottom" id="dmS-Wq-Yl4"/>
+                            <constraint firstItem="zP5-pH-ZxI" firstAttribute="bottom" secondItem="SL9-q8-ouI" secondAttribute="bottom" constant="80" id="vZK-4m-GMu"/>
+                            <constraint firstItem="8zI-bk-OKu" firstAttribute="leading" secondItem="zP5-pH-ZxI" secondAttribute="leading" constant="16" id="xjw-8h-a4W"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zP5-pH-ZxI"/>
+                    </view>
+                    <connections>
+                        <outlet property="nextButton" destination="sxv-U4-cXZ" id="fMA-gQ-R3S"/>
+                        <outlet property="pageControl" destination="SL9-q8-ouI" id="ImJ-3R-vd2"/>
+                        <outlet property="prevButton" destination="8zI-bk-OKu" id="yyP-Zu-x8D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tJN-wm-dpB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1930.4000000000001" y="-1415.0246305418721"/>
+        </scene>
+        <!--Walkthrough Page View Controller-->
+        <scene sceneID="bcU-Oq-ckj">
+            <objects>
+                <viewController storyboardIdentifier="walk1" id="WLm-e0-uYk" customClass="BWWalkthroughPageViewController" customModule="Keepmate" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NPu-mb-qPd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="IMG_8333" translatesAutoresizingMaskIntoConstraints="NO" id="d8X-oC-YW4">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Keepmate" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpf-Ed-Jst">
+                                <rect key="frame" x="108" y="152" width="159" height="79.333333333333314"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="28"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track your exercise. Train smarter. Have Fun" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCk-wf-q5R">
+                                <rect key="frame" x="93" y="247.00000000000003" width="188" height="48.333333333333343"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mpf-Ed-Jst" firstAttribute="leading" secondItem="sfy-xo-o2i" secondAttribute="leading" constant="108" id="JAf-1S-e62"/>
+                            <constraint firstItem="mpf-Ed-Jst" firstAttribute="top" secondItem="sfy-xo-o2i" secondAttribute="top" constant="108" id="Nmq-K3-LiE"/>
+                            <constraint firstItem="sfy-xo-o2i" firstAttribute="trailing" secondItem="mpf-Ed-Jst" secondAttribute="trailing" constant="108" id="Qtm-71-E9L"/>
+                            <constraint firstItem="sCk-wf-q5R" firstAttribute="leading" secondItem="sfy-xo-o2i" secondAttribute="leading" constant="93" id="Slv-af-j4b"/>
+                            <constraint firstItem="sfy-xo-o2i" firstAttribute="trailing" secondItem="sCk-wf-q5R" secondAttribute="trailing" constant="94" id="X9b-BZ-WAj"/>
+                            <constraint firstItem="sCk-wf-q5R" firstAttribute="top" secondItem="mpf-Ed-Jst" secondAttribute="bottom" constant="15.666666666666686" id="re8-Sf-HIV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sfy-xo-o2i"/>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="point" keyPath="speed">
+                            <point key="value" x="1" y="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="point" keyPath="speedVariance">
+                            <point key="value" x="1.2" y="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="animationType" value="InOut"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="staticTags" value="1,2"/>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HVV-Qz-EBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1220.2898550724638" y="-1415.625"/>
+        </scene>
+        <!--Walkthrough Page View Controller-->
+        <scene sceneID="WE7-lN-zgf">
+            <objects>
+                <viewController storyboardIdentifier="walk2" id="FxI-nE-GMA" customClass="BWWalkthroughPageViewController" customModule="Keepmate" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XlV-kV-SU8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="IMG_8334" translatesAutoresizingMaskIntoConstraints="NO" id="aun-tc-4JR">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JAW-DROPPING" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8f-q9-q5H">
+                                <rect key="frame" x="108" y="149" width="159" height="79.333333333333314"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="28"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I don't think I've ever seen such advanced technology in a sports app." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYQ-f3-bmW">
+                                <rect key="frame" x="82" y="230.00000000000003" width="210" height="72.333333333333343"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="sYQ-f3-bmW" firstAttribute="top" secondItem="m8f-q9-q5H" secondAttribute="bottom" constant="1.6666666666666856" id="6s0-kf-J5E"/>
+                            <constraint firstItem="sYQ-f3-bmW" firstAttribute="leading" secondItem="Ip0-YZ-Ab5" secondAttribute="leading" constant="82" id="Mj9-x8-ItE"/>
+                            <constraint firstItem="Ip0-YZ-Ab5" firstAttribute="trailing" secondItem="m8f-q9-q5H" secondAttribute="trailing" constant="108" id="NT6-JW-Lne"/>
+                            <constraint firstItem="Ip0-YZ-Ab5" firstAttribute="trailing" secondItem="sYQ-f3-bmW" secondAttribute="trailing" constant="83" id="Sxo-2j-mgn"/>
+                            <constraint firstItem="m8f-q9-q5H" firstAttribute="top" secondItem="Ip0-YZ-Ab5" secondAttribute="top" constant="105" id="Yv6-ek-U0E"/>
+                            <constraint firstItem="m8f-q9-q5H" firstAttribute="leading" secondItem="Ip0-YZ-Ab5" secondAttribute="leading" constant="108" id="kdK-mx-2YF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ip0-YZ-Ab5"/>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="point" keyPath="speed">
+                            <point key="value" x="1" y="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="point" keyPath="speedVariance">
+                            <point key="value" x="1.2" y="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ywo-Vi-RLk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-488.40579710144931" y="-1415.625"/>
+        </scene>
+        <!--Walkthrough Page View Controller-->
+        <scene sceneID="JCN-bf-NgU">
+            <objects>
+                <viewController storyboardIdentifier="walk3" id="iAp-ow-Ruk" customClass="BWWalkthroughPageViewController" customModule="Keepmate" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b5E-vI-UfA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="IMG_8332" translatesAutoresizingMaskIntoConstraints="NO" id="tDC-k4-0Xz">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rodrick" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O79-Vb-vrL">
+                                <rect key="frame" x="108" y="146" width="159" height="39.666666666666657"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="28"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keepmate can help you get better fitness, and scores for your fitness movement and provide professional guidance through AI" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wx4-sQ-fB9">
+                                <rect key="frame" x="93" y="193.33333333333331" width="188" height="144.33333333333331"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Z3p-c8-nQ9" firstAttribute="trailing" secondItem="O79-Vb-vrL" secondAttribute="trailing" constant="108" id="1GM-bF-gWv"/>
+                            <constraint firstItem="wx4-sQ-fB9" firstAttribute="top" secondItem="O79-Vb-vrL" secondAttribute="bottom" constant="7.6666666666666856" id="CSg-w1-oFv"/>
+                            <constraint firstItem="O79-Vb-vrL" firstAttribute="leading" secondItem="Z3p-c8-nQ9" secondAttribute="leading" constant="108" id="EY7-0P-BJT"/>
+                            <constraint firstItem="wx4-sQ-fB9" firstAttribute="leading" secondItem="Z3p-c8-nQ9" secondAttribute="leading" constant="93" id="VIz-F0-7uF"/>
+                            <constraint firstItem="O79-Vb-vrL" firstAttribute="top" secondItem="Z3p-c8-nQ9" secondAttribute="top" constant="102" id="WYs-cz-IvU"/>
+                            <constraint firstItem="Z3p-c8-nQ9" firstAttribute="trailing" secondItem="wx4-sQ-fB9" secondAttribute="trailing" constant="94" id="aZV-KC-gmC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Z3p-c8-nQ9"/>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="point" keyPath="speed">
+                            <point key="value" x="1" y="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="point" keyPath="speedVariance">
+                            <point key="value" x="1.2" y="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7mo-Ec-4nD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="246.37681159420291" y="-1415.625"/>
+        </scene>
+        <!--Walkthrough Page View Controller-->
+        <scene sceneID="k3C-2k-jbI">
+            <objects>
+                <viewController storyboardIdentifier="walk0" id="Xz3-05-iOi" customClass="BWWalkthroughPageViewController" customModule="Keepmate" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pP6-ex-yqu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_8335" translatesAutoresizingMaskIntoConstraints="NO" id="U4w-cG-w3x">
+                                <rect key="frame" x="0.0" y="0.0" width="374" height="812"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Arnold Schwarzenegger" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uxr-Yf-VFy">
+                                <rect key="frame" x="108" y="143" width="159" height="79.333333333333314"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="28"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="7" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBe-lE-lLe">
+                                <rect key="frame" x="93" y="230" width="188" height="168.33333333333337"/>
+                                <string key="text">The mind is the limit. As long as the mind can envision the fact that you can do something, you can do it – as long as you really believe 100 percent.</string>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTd-I1-klP">
+                                <rect key="frame" x="80" y="504" width="214" height="52"/>
+                                <color key="backgroundColor" red="0.22745098039215686" green="0.28235294117647058" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="28"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="Get Started">
+                                    <color key="titleColor" red="0.93333333333333335" green="0.81176470588235294" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="getStarted:" destination="Xz3-05-iOi" eventType="touchUpInside" id="2la-8v-LMM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pBe-lE-lLe" firstAttribute="top" secondItem="Uxr-Yf-VFy" secondAttribute="bottom" constant="7.6666666666666856" id="0OG-rj-Ty1"/>
+                            <constraint firstItem="Uxr-Yf-VFy" firstAttribute="top" secondItem="ova-U1-ckS" secondAttribute="top" constant="99" id="40w-VQ-Wug"/>
+                            <constraint firstItem="ova-U1-ckS" firstAttribute="trailing" secondItem="Uxr-Yf-VFy" secondAttribute="trailing" constant="108" id="5jM-s2-TKA"/>
+                            <constraint firstItem="Uxr-Yf-VFy" firstAttribute="leading" secondItem="ova-U1-ckS" secondAttribute="leading" constant="108" id="DME-7U-TPf"/>
+                            <constraint firstAttribute="bottom" secondItem="U4w-cG-w3x" secondAttribute="bottom" id="Hwb-qS-ENU"/>
+                            <constraint firstItem="U4w-cG-w3x" firstAttribute="leading" secondItem="pP6-ex-yqu" secondAttribute="leading" id="KAY-ad-OYI"/>
+                            <constraint firstItem="HTd-I1-klP" firstAttribute="leading" secondItem="U4w-cG-w3x" secondAttribute="trailing" constant="-294" id="bNr-uh-3eb"/>
+                            <constraint firstItem="U4w-cG-w3x" firstAttribute="centerX" secondItem="pBe-lE-lLe" secondAttribute="centerX" id="dlB-fr-GFK"/>
+                            <constraint firstItem="U4w-cG-w3x" firstAttribute="centerX" secondItem="HTd-I1-klP" secondAttribute="centerX" id="gR6-RI-qXE"/>
+                            <constraint firstItem="U4w-cG-w3x" firstAttribute="top" secondItem="pP6-ex-yqu" secondAttribute="top" id="lpl-I3-Wr5"/>
+                            <constraint firstItem="ova-U1-ckS" firstAttribute="trailing" secondItem="pBe-lE-lLe" secondAttribute="trailing" constant="94" id="vcz-TT-TKa"/>
+                            <constraint firstItem="HTd-I1-klP" firstAttribute="top" secondItem="pBe-lE-lLe" secondAttribute="bottom" constant="105.5" id="xVk-1O-cXv"/>
+                            <constraint firstItem="pBe-lE-lLe" firstAttribute="leading" secondItem="ova-U1-ckS" secondAttribute="leading" constant="93" id="zhb-Yy-Pxd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ova-U1-ckS"/>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="point" keyPath="speed">
+                            <point key="value" x="1" y="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="point" keyPath="speedVariance">
+                            <point key="value" x="1.2" y="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="getStarted" destination="HTd-I1-klP" id="nVq-BI-aP2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gAY-um-I3S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="997.10144927536237" y="-1415.625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="IMG_8332" width="443.5" height="960"/>
+        <image name="IMG_8333" width="443.5" height="960"/>
+        <image name="IMG_8334" width="443.5" height="960"/>
+        <image name="IMG_8335" width="443.5" height="960"/>
+        <image name="leftarrow" width="50" height="50"/>
+        <image name="rightarrow" width="50" height="50"/>
+    </resources>
+</document>

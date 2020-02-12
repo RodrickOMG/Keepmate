@@ -14,12 +14,14 @@ struct RegisterView: View {
     @State private var username = ""
     @State var err = ""
     @Binding var isPresented: Bool
+    @State var isRegistered = false
     @State var viewState = CGSize.zero // position
+    @State var isProcessed = false
+    @State var degress = 0.0
     var body: some View {
         ZStack {
             Color("mainBackground")
-            .edgesIgnoringSafeArea(.all)
-            
+                .edgesIgnoringSafeArea(.all)
             VStack {
                 Button(action: {
                     self.isPresented.toggle()
@@ -75,23 +77,28 @@ struct RegisterView: View {
                 .padding(.bottom, -7.0)
                 MultilineTextView(text: $err)
                     .frame(minWidth: 0, maxWidth: 280, minHeight: 0, maxHeight: 50)
-                Button(action: {
-                    print(self.email, self.password)
-                }) {
-                    HStack {
-                        Text("Register")
-                            .fontWeight(.bold)
-                            .font(.custom("Chalkboard SE", size: 28))
+                NavigationLink(destination: TabBarHomeView(), isActive: $isRegistered) {
+                    Button(action: {
+                        self.registerPressed(self.email, self.username, self.password)
+                    }) {
+                        HStack {
+                            Text("Register")
+                                .fontWeight(.bold)
+                                .font(.custom("Chalkboard SE", size: 28))
+                        }
+                        .frame(minWidth: 0, maxWidth: 300)
+                        .padding(5)
+                        .foregroundColor(.white)
+                        .background(LinearGradient(gradient: Gradient(colors: [Color("DarkBtnBkg1"), Color("LightBtnBkg1")]), startPoint: .leading, endPoint: .trailing))
+                        .cornerRadius(40)
                     }
-                    .frame(minWidth: 0, maxWidth: 300)
-                    .padding(5)
-                    .foregroundColor(.white)
-                    .background(LinearGradient(gradient: Gradient(colors: [Color("DarkBtnBkg1"), Color("LightBtnBkg1")]), startPoint: .leading, endPoint: .trailing))
-                    .cornerRadius(40)
                 }
             }
                 // end of the view
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: Alignment.top)
+            if isProcessed {
+                ProgressCircleView()
+            }
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
@@ -110,7 +117,32 @@ struct RegisterView: View {
                 }
         )
     }
+    
+    func registerPressed(_ email: String, _ username: String, _ password: String) {
+        self.isProcessed.toggle()
+        print(email, username, password)
+        let user = BmobUser()
+        user.email = email
+        user.username = username
+        user.password = password
+        
+        
+        
+        user.signUpInBackground {
+            (isSuccessful, error) in if isSuccessful {
+                print("Successfullly created user: " + username)
+                self.isProcessed.toggle()
+                self.isRegistered.toggle()
+            } else {
+                print("Failed to create user. " + error!.localizedDescription)
+                self.isProcessed.toggle()
+            }
+        }
+    }
+    
 }
+
+
 #if DEBUG
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
@@ -124,3 +156,37 @@ struct RegisterView_Previews: PreviewProvider {
     }
 }
 #endif
+
+struct ProgressCircleView: View {
+    @State var degress = 0.0
+    var body: some View {
+        Group {
+            Rectangle()
+                .stroke(Color.white, lineWidth: 0)
+                .background(Color.white)
+                .frame(width: 80, height: 80)
+                .cornerRadius(10)
+                .shadow(radius: 10)
+                .opacity(0.3)
+            Circle()
+                .trim(from: 0.0, to: 0.6)
+                .stroke(Color.blue, lineWidth: 5.0)
+                .padding()
+                .frame(width: 80, height: 80)
+                .rotationEffect(Angle(degrees: degress))
+                .onAppear(perform: {self.start()})
+        }
+        .padding(.bottom, 80)
+    }
+    
+    func start() {
+        _ = Timer.scheduledTimer(withTimeInterval: 0.02, repeats: true) { timer in
+            withAnimation {
+                self.degress += 10.0
+            }
+            if self.degress == 360.0 {
+                self.degress = 0.0
+            }
+        }
+    }
+}
