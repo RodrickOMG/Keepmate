@@ -16,8 +16,13 @@ struct RegisterView: View {
     @Binding var isPresented: Bool
     @State var isRegistered = false
     @State var viewState = CGSize.zero // position
+    
     @State var isProcessed = false
     @State var degress = 0.0
+    
+    @State var showAlert = false
+    @State var alertMsg = ""
+    
     var body: some View {
         ZStack {
             Color("mainBackground")
@@ -93,6 +98,9 @@ struct RegisterView: View {
                         .cornerRadius(40)
                     }
                 }
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text(alertMsg))
+                }
             }
                 // end of the view
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: Alignment.top)
@@ -119,23 +127,29 @@ struct RegisterView: View {
     }
     
     func registerPressed(_ email: String, _ username: String, _ password: String) {
-        self.isProcessed.toggle()
-        print(email, username, password)
         let user = BmobUser()
         user.email = email
         user.username = username
         user.password = password
-        
-        
-        
+        if !Utilities.isPasswordValid(password) {
+            self.alertMsg = "Your password has to be at least 8 characters long, and must contain at least one lower case letter, one upper case letter."
+            self.showAlert.toggle()
+            return
+        }
+        self.isProcessed.toggle()
         user.signUpInBackground {
             (isSuccessful, error) in if isSuccessful {
                 print("Successfullly created user: " + username)
+                UserDefaults.standard.set(email, forKey: "email")
+                UserDefaults.standard.set(username, forKey: "username")
+                UserDefaults.standard.set(true, forKey: "isLogined")
                 self.isProcessed.toggle()
                 self.isRegistered.toggle()
             } else {
                 print("Failed to create user. " + error!.localizedDescription)
                 self.isProcessed.toggle()
+                self.alertMsg = error!.localizedDescription
+                self.showAlert.toggle()
             }
         }
     }

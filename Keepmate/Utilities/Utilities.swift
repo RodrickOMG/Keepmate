@@ -9,11 +9,21 @@
 import Foundation
 
 class Utilities {
-    static func emailValidity(_ email: String) -> String{
-        if email.count > 0 {
-            return ""
+    static func isPasswordValid(_ password: String) -> Bool {
+        let txt = password
+        if txt.rangeOfCharacter(from: CharacterSet.uppercaseLetters) == nil {
+            return false
+        }
+        else if txt.rangeOfCharacter(from: CharacterSet.lowercaseLetters) == nil {
+            return false
+        }
+        else if txt.rangeOfCharacter(from: CharacterSet.decimalDigits) == nil {
+            return false
+        }
+        else if txt.count < 8 {
+            return false
         } else {
-            return "Email cannot be empty"
+            return true
         }
     }
 }

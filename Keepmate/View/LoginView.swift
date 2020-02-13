@@ -14,6 +14,12 @@ struct LoginView: View {
     @State var err = ""
     @State var isPresented = false
     @State var isLogined = false
+    
+    @State var isProcessed = false
+    @State var degress = 0.0
+    
+    @State var showAlert = false
+    @State var alertMsg = ""
     var body: some View {
         NavigationView {
             ZStack {
@@ -57,8 +63,7 @@ struct LoginView: View {
                         .frame(minWidth: 0, maxWidth: 280, minHeight: 0, maxHeight: 50)
                     NavigationLink(destination: TabBarHomeView(), isActive: $isLogined) {
                         Button(action: {
-                            print(self.email, self.password)
-                            self.isLogined.toggle()
+                            self.loginPressed(self.email, self.password)
                         }) {
                             HStack {
                                 Text("Login")
@@ -84,6 +89,9 @@ struct LoginView: View {
                                     .font(.custom("Chalkboard SE", size: 18))
                             }
                         }
+                        .alert(isPresented: $showAlert) {
+                            Alert(title: Text(alertMsg))
+                        }
                         Button(action: {
                             print("Forgot password?")
                         }) {
@@ -94,6 +102,29 @@ struct LoginView: View {
                 }
                     // end of the view
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: Alignment.top)
+                if isProcessed {
+                    ProgressCircleView()
+                }
+            }
+        }
+    }
+    func loginPressed(_ email: String, _ password: String) {
+        let user = BmobUser()
+        user.email = email
+        user.password = password
+        self.isProcessed.toggle()
+        BmobUser.loginInbackground(withAccount: email, andPassword: password) { (user, error) in
+            if error != nil {
+                self.isProcessed.toggle()
+                self.alertMsg = error!.localizedDescription
+                self.showAlert.toggle()
+            } else {
+                print("Login successfully")
+                UserDefaults.standard.set(email, forKey: "email")
+                UserDefaults.standard.set(user?.username, forKey: "username")
+                UserDefaults.standard.set(true, forKey: "isLogined")
+                self.isProcessed.toggle()
+                self.isLogined.toggle()
             }
         }
     }

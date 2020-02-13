@@ -11,6 +11,10 @@ import SwiftUI
 struct ProfileView: View {
     @Binding var isPresented: Bool
     @State var viewState = CGSize.zero // position
+    
+    let username = UserDefaults.standard.string(forKey: "username")
+    let email = UserDefaults.standard.string(forKey: "email")
+    
     var body: some View {
         GeometryReader { geo in
             Color("mainBackground")
@@ -74,11 +78,11 @@ struct ProfileView: View {
                             }
                             .padding(.leading, 20)
                             .padding(.top, -20)
-                            Text("Rodrick")
+                            Text(self.username!)
                                 .font(.title)
                                 .bold()
                                 .padding(.leading, 20)
-                            Text("206552@qq.com")
+                            Text(self.email!)
                                 .font(.body)
                                 .padding(.leading, 20)
                             Divider()
