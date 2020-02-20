@@ -31,7 +31,7 @@ struct BasicView: View {
             if index == 0 {
                 HomeView()
             } else if index == 3 {
-                ContentView()
+                ProfileView(isPresented: .constant(true))
             }
         }
     }

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		487501672B693B41A6DA71AD /* Pods_Keepmate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B250FB8F4507C223B3A3E1 /* Pods_Keepmate.framework */; };
+		52233CC023FD52A700D2DA46 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52233CBF23FD52A600D2DA46 /* ImagePicker.swift */; };
+		52233CC523FD8B8300D2DA46 /* CameraImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52233CC423FD8B8300D2DA46 /* CameraImagePicker.swift */; };
+		52233CC723FE27DE00D2DA46 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52233CC623FE27DE00D2DA46 /* UserInfo.swift */; };
 		523D5F4323E92D81005418D5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D5F4223E92D81005418D5 /* ProfileView.swift */; };
 		5259E25323F3B3F700260694 /* BWWalkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5259E25223F3B3F700260694 /* BWWalkthrough.storyboard */; };
 		5259E25C23F3B82000260694 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5259E25B23F3B82000260694 /* Utilities.swift */; };
@@ -32,6 +35,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52233CBF23FD52A600D2DA46 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		52233CC423FD8B8300D2DA46 /* CameraImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraImagePicker.swift; sourceTree = "<group>"; };
+		52233CC623FE27DE00D2DA46 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		523D5F4223E92D81005418D5 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		5259E24E23F3B31600260694 /* Keepmate-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Keepmate-Bridging-Header.h"; sourceTree = "<group>"; };
 		5259E25223F3B3F700260694 /* BWWalkthrough.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BWWalkthrough.storyboard; sourceTree = "<group>"; };
@@ -81,6 +87,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		52233CC323FD7ACE00D2DA46 /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				52233CBF23FD52A600D2DA46 /* ImagePicker.swift */,
+				52233CC423FD8B8300D2DA46 /* CameraImagePicker.swift */,
+			);
+			path = ImagePicker;
+			sourceTree = "<group>";
+		};
 		5259E24C23F3B2C400260694 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +123,7 @@
 		5259E25A23F3B52100260694 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				52233CC623FE27DE00D2DA46 /* UserInfo.swift */,
 				52E157FB23E6E9C800A35113 /* Constant.swift */,
 				5259E25B23F3B82000260694 /* Utilities.swift */,
 			);
@@ -169,6 +185,7 @@
 		52B6C39423CCB406006B5104 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				52233CC323FD7ACE00D2DA46 /* ImagePicker */,
 				52A2548923F4564800652D7C /* BottomBar */,
 				5259E25123F3B3B200260694 /* GuidingViews */,
 				52E38CE023D0730600CA7D56 /* BlurView.swift */,
@@ -300,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52233CC523FD8B8300D2DA46 /* CameraImagePicker.swift in Sources */,
 				52B6C38123CCB0A5006B5104 /* AppDelegate.swift in Sources */,
 				52E38CE123D0730600CA7D56 /* BlurView.swift in Sources */,
 				52A2548F23F4565D00652D7C /* BottomBar.swift in Sources */,
@@ -307,6 +325,7 @@
 				5259E25C23F3B82000260694 /* Utilities.swift in Sources */,
 				5284B1FE23D021E000220660 /* HomeListView.swift in Sources */,
 				52A2548E23F4565D00652D7C /* BottomBarItemView.swift in Sources */,
+				52233CC023FD52A700D2DA46 /* ImagePicker.swift in Sources */,
 				52B6C39823CDA788006B5104 /* RegisterView.swift in Sources */,
 				52E157FE23E6F52500A35113 /* MenuDetails.swift in Sources */,
 				52A2548D23F4565D00652D7C /* BottomBarItem.swift in Sources */,
@@ -317,6 +336,7 @@
 				52B6C38523CCB0A5006B5104 /* ContentView.swift in Sources */,
 				5263E8F023D1687600866887 /* SettingsView.swift in Sources */,
 				523D5F4323E92D81005418D5 /* ProfileView.swift in Sources */,
+				52233CC723FE27DE00D2DA46 /* UserInfo.swift in Sources */,
 				52E157FC23E6E9C800A35113 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

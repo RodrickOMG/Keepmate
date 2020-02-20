@@ -7,13 +7,34 @@
 //
 
 import SwiftUI
+import Combine
+
 
 struct ProfileView: View {
     @Binding var isPresented: Bool
     @State var viewState = CGSize.zero // position
+    @State var isChangeProfilePicPresented = false
     
-    let username = UserDefaults.standard.string(forKey: "username")
-    let email = UserDefaults.standard.string(forKey: "email")
+    @State var showImagePicker: Bool = false
+    @State var pickerType: String = ""
+    
+    @State var username: String = ""
+    @State var email: String = ""
+    @State var image: Image? = Image("profile_default_male")
+    
+    var actionSheet: ActionSheet {
+        ActionSheet(title: Text("Choose a new profile picture"), buttons: [
+            .default(Text("Take Photo"),action: {
+                self.pickerType = "camera"
+                self.showImagePicker.toggle()
+            }),
+            .default(Text("Choose from Album"),action: {
+                self.pickerType = "photoLibrary"
+                self.showImagePicker.toggle()
+            }),
+            .destructive(Text("Cancel"))
+        ])
+    }
     
     var body: some View {
         GeometryReader { geo in
@@ -32,6 +53,7 @@ struct ProfileView: View {
                             }) {
                                 Image("profile_default_background")
                                     .resizable()
+                                    .scaledToFill()
                                     .shadow(radius: 10)
                                     .opacity(0.1)
                                     .frame(minWidth: 0, maxWidth: .infinity, maxHeight: geo.size.height * 0.15)
@@ -43,14 +65,25 @@ struct ProfileView: View {
                         }
                         VStack(alignment: .leading) {
                             HStack(spacing: 20) {
-                                Image("profile_default_male")
-                                    .resizable()
-                                    
-                                    .cornerRadius(10)
-                                    .overlay(Circle().stroke(Color("mainBackground"), lineWidth: 3))
-                                    .shadow(radius: 10)
-                                    .frame(width: geo.size.width * 0.25, height: geo.size.width * 0.25)
-                                    .cornerRadius(50)
+                                Button(action:{
+                                    self.isChangeProfilePicPresented.toggle()
+                                    print("edit profile picture")
+                                }) {
+                                    self.image?
+                                        .resizable()
+                                        .scaledToFill()
+                                        .cornerRadius(10) .overlay(Circle().stroke(Color("mainBackground"), lineWidth: 3))
+                                        .shadow(radius: 10)
+                                        .frame(width: geo.size.width * 0.25, height: geo.size.width * 0.25)
+                                        .cornerRadius(50)
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                                .actionSheet(isPresented: self.$isChangeProfilePicPresented, content: {
+                                    self.actionSheet
+                                })
+                                .sheet(isPresented: self.$showImagePicker) {
+                                    ImagePicker(image: self.$image, pickerType: self.$pickerType)
+                                }
                                 Button(action:{
                                     print("edit profile")
                                 }) {
@@ -78,11 +111,11 @@ struct ProfileView: View {
                             }
                             .padding(.leading, 20)
                             .padding(.top, -20)
-                            Text(self.username!)
+                            Text(self.username)
                                 .font(.title)
                                 .bold()
                                 .padding(.leading, 20)
-                            Text(self.email!)
+                            Text(self.email)
                                 .font(.body)
                                 .padding(.leading, 20)
                             Divider()
@@ -107,6 +140,7 @@ struct ProfileView: View {
             }
             .edgesIgnoringSafeArea(.top)
         }
+            
             .gesture(  // swipe to back
                 DragGesture()
                     .onChanged { value in
@@ -120,6 +154,60 @@ struct ProfileView: View {
                     self.viewState = CGSize.zero
                 }
         )
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+        .navigationBarTitle(Text(""))
+        .onAppear(perform: {
+            self.getCurrentUser()
+        })
+    }
+    func getCurrentUser() {
+        let user = BmobUser.current()
+        self.username = UserDefaults.standard.string(forKey: "username") ?? "Not Login"
+        self.email = UserDefaults.standard.string(forKey: "email") ?? ""
+        print(UserDefaults.standard.string(forKey: "profilePicPath") as Any)
+        if UserDefaults.standard.string(forKey: "profilePicPath") == nil {
+            let profilePicFile = user?.object(forKey: "profilePic") as? BmobFile
+            guard let url = URL(string: profilePicFile!.url!) else {return}
+            do {
+                let data = try Data(contentsOf: url)
+                let uiImage = UIImage(data: data)
+                self.image = Image(uiImage: uiImage ?? UIImage())
+            }catch let error as NSError {
+                print(error)
+                self.image = Image("profile_default_male")
+            }
+        } else {
+            let filePath = String(UserDefaults.standard.string(forKey: "profilePicPath")!)
+            let url = URL.init(fileURLWithPath: filePath)
+            do {
+                let data = try Data(contentsOf: url)
+                let uiImage = UIImage(data: data)
+                self.image = Image(uiImage: uiImage ?? UIImage())
+            }catch let error as NSError {
+                print(error)
+                self.image = Image("profile_default_male")
+            }
+        }
+        
+    }
+}
+final class RemoteImageURL: ObservableObject {
+    var didChange = PassthroughSubject<Data, Never>()
+    var data = Data() {
+        didSet {
+            didChange.send(data)
+        }
+    }
+    init(imageURL: String) {
+        guard let url = URL(string: imageURL) else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else { return }
+            
+            DispatchQueue.main.async { self.data = data }
+            
+        }.resume()
     }
 }
 
