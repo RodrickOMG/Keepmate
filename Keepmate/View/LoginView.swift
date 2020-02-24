@@ -61,7 +61,7 @@ struct LoginView: View {
                     .padding(.bottom, -7.0)
                     MultilineTextView(text: $err)
                         .frame(minWidth: 0, maxWidth: 280, minHeight: 0, maxHeight: 50)
-                    NavigationLink(destination: TabBarHomeView(), isActive: $isLogined) {
+                    NavigationLink(destination: TabBarHomeView(isLogin: $isLogined), isActive: $isLogined) {
                         Button(action: {
                             self.loginPressed(self.email, self.password)
                         }) {
@@ -106,6 +106,12 @@ struct LoginView: View {
                     ProgressCircleView()
                 }
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
+            .navigationBarTitle(Text(""))
+            .onAppear(perform: {
+                self.isLogined = false
+            })
         }
     }
     func loginPressed(_ email: String, _ password: String) {

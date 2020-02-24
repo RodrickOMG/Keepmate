@@ -32,6 +32,8 @@
 		52E157FE23E6F52500A35113 /* MenuDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E157FD23E6F52500A35113 /* MenuDetails.swift */; };
 		52E38CE123D0730600CA7D56 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E38CE023D0730600CA7D56 /* BlurView.swift */; };
 		52E38CE323D0A80500CA7D56 /* UpdateListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E38CE223D0A80500CA7D56 /* UpdateListView.swift */; };
+		52F18EDC2403D2B00081A26E /* WorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F18EDB2403D2AF0081A26E /* WorkoutDetailView.swift */; };
+		52F18EDE240426E60081A26E /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F18EDD240426E60081A26E /* SwiftUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		52E157FD23E6F52500A35113 /* MenuDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetails.swift; sourceTree = "<group>"; };
 		52E38CE023D0730600CA7D56 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		52E38CE223D0A80500CA7D56 /* UpdateListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateListView.swift; sourceTree = "<group>"; };
+		52F18EDB2403D2AF0081A26E /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
+		52F18EDD240426E60081A26E /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		6CD592B6EC32EAA7DC843147 /* Pods-Keepmate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keepmate.debug.xcconfig"; path = "Target Support Files/Pods-Keepmate/Pods-Keepmate.debug.xcconfig"; sourceTree = "<group>"; };
 		BA2226C55AE9AD5C95A50CA6 /* Pods-Keepmate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keepmate.release.xcconfig"; path = "Target Support Files/Pods-Keepmate/Pods-Keepmate.release.xcconfig"; sourceTree = "<group>"; };
 		E8B250FB8F4507C223B3A3E1 /* Pods_Keepmate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Keepmate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,6 +203,8 @@
 				52A8258123D156CC00AB8CCB /* TabBarHomeView.swift */,
 				5263E8EF23D1687600866887 /* SettingsView.swift */,
 				52E157FD23E6F52500A35113 /* MenuDetails.swift */,
+				52F18EDB2403D2AF0081A26E /* WorkoutDetailView.swift */,
+				52F18EDD240426E60081A26E /* SwiftUIView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -323,6 +329,7 @@
 				52A2548F23F4565D00652D7C /* BottomBar.swift in Sources */,
 				52E38CE323D0A80500CA7D56 /* UpdateListView.swift in Sources */,
 				5259E25C23F3B82000260694 /* Utilities.swift in Sources */,
+				52F18EDE240426E60081A26E /* SwiftUIView.swift in Sources */,
 				5284B1FE23D021E000220660 /* HomeListView.swift in Sources */,
 				52A2548E23F4565D00652D7C /* BottomBarItemView.swift in Sources */,
 				52233CC023FD52A700D2DA46 /* ImagePicker.swift in Sources */,
@@ -330,6 +337,7 @@
 				52E157FE23E6F52500A35113 /* MenuDetails.swift in Sources */,
 				52A2548D23F4565D00652D7C /* BottomBarItem.swift in Sources */,
 				52B6C38323CCB0A5006B5104 /* SceneDelegate.swift in Sources */,
+				52F18EDC2403D2B00081A26E /* WorkoutDetailView.swift in Sources */,
 				526090E223CF487D00ED0192 /* HomeView.swift in Sources */,
 				52B6C39623CCB4C1006B5104 /* LoginView.swift in Sources */,
 				52A8258223D156CC00AB8CCB /* TabBarHomeView.swift in Sources */,

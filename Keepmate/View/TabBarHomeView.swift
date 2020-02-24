@@ -16,6 +16,7 @@ let items: [BottomBarItem] = [
 ]
 
 struct BasicView: View {
+    @Binding var isLogin: Bool
     let item: BottomBarItem
     let index: Int
     
@@ -29,7 +30,7 @@ struct BasicView: View {
     var body: some View {
         VStack {
             if index == 0 {
-                HomeView()
+                HomeView(isLoginConfirmed: $isLogin)
             } else if index == 3 {
                 ProfileView(isPresented: .constant(true))
             }
@@ -39,6 +40,7 @@ struct BasicView: View {
 
 struct TabBarHomeView : View {
     @State private var selectedIndex: Int = 0
+    @Binding var isLogin: Bool
     
     var selectedItem: BottomBarItem {
         items[selectedIndex]
@@ -47,7 +49,7 @@ struct TabBarHomeView : View {
     var body: some View {
         NavigationView {
             VStack {
-                BasicView(item: selectedItem, index: selectedIndex)
+                BasicView(isLogin: $isLogin, item: selectedItem, index: selectedIndex)
                     .navigationBarTitle(Text(selectedItem.title))
                 BottomBar(selectedIndex: $selectedIndex, items: items)
             }
@@ -61,11 +63,11 @@ struct TabBarHomeView : View {
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
         Group{
-            TabBarHomeView().previewDevice("iPhone Xs Max")
-            TabBarHomeView().previewDevice("iPhone 11 Pro")
-            TabBarHomeView().previewDevice("iPhone 11")
+            TabBarHomeView(isLogin: .constant(true)).previewDevice("iPhone Xs Max")
+            TabBarHomeView(isLogin: .constant(true)).previewDevice("iPhone 11 Pro")
+            TabBarHomeView(isLogin: .constant(true)).previewDevice("iPhone 11")
                 .environment(\.colorScheme, .dark)
-            TabBarHomeView().previewDevice("iPhone 8")
+            TabBarHomeView(isLogin: .constant(true)).previewDevice("iPhone 8")
         }
     }
 }

@@ -162,21 +162,10 @@ struct ProfileView: View {
         })
     }
     func getCurrentUser() {
-        let user = BmobUser.current()
         self.username = UserDefaults.standard.string(forKey: "username") ?? "Not Login"
         self.email = UserDefaults.standard.string(forKey: "email") ?? ""
-        print(UserDefaults.standard.string(forKey: "profilePicPath") as Any)
-        if UserDefaults.standard.string(forKey: "profilePicPath") == nil {
-            let profilePicFile = user?.object(forKey: "profilePic") as? BmobFile
-            guard let url = URL(string: profilePicFile!.url!) else {return}
-            do {
-                let data = try Data(contentsOf: url)
-                let uiImage = UIImage(data: data)
-                self.image = Image(uiImage: uiImage ?? UIImage())
-            }catch let error as NSError {
-                print(error)
-                self.image = Image("profile_default_male")
-            }
+        if UserDefaults.standard.string(forKey: "profilePicPath") == nil || UserDefaults.standard.string(forKey: "profilePicPath") == "" {
+            getRemoteProfilePic()
         } else {
             let filePath = String(UserDefaults.standard.string(forKey: "profilePicPath")!)
             let url = URL.init(fileURLWithPath: filePath)
@@ -184,12 +173,25 @@ struct ProfileView: View {
                 let data = try Data(contentsOf: url)
                 let uiImage = UIImage(data: data)
                 self.image = Image(uiImage: uiImage ?? UIImage())
-            }catch let error as NSError {
+            } catch let error as NSError {
                 print(error)
-                self.image = Image("profile_default_male")
+                getRemoteProfilePic()
             }
         }
         
+    }
+    func getRemoteProfilePic() {
+        let user = BmobUser.current()
+        let profilePicFile = user?.object(forKey: "profilePic") as? BmobFile
+        guard let url = URL(string: profilePicFile!.url!) else {return}
+        do {
+            let data = try Data(contentsOf: url)
+            let uiImage = UIImage(data: data)
+            self.image = Image(uiImage: uiImage ?? UIImage())
+        }catch let error as NSError {
+            print(error)
+            self.image = Image("profile_default_male")
+        }
     }
 }
 final class RemoteImageURL: ObservableObject {

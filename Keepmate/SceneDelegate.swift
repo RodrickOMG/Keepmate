@@ -26,11 +26,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             if UserDefaults.standard.bool(forKey: "isLogined") == true {
-                let contentView = TabBarHomeView()
+                UserDefaults.standard.set(false, forKey: "firstLogin")
+                let contentView = TabBarHomeView(isLogin: .constant(true))
                 window.rootViewController = UIHostingController(rootView: contentView)
             } else {
+                UserDefaults.standard.set(true, forKey: "firstLogin")
                 let contentView = LoginView()
-            window.rootViewController = UIHostingController(rootView: contentView)
+                window.rootViewController = UIHostingController(rootView: contentView)
             }
             self.window = window
             window.makeKeyAndVisible()

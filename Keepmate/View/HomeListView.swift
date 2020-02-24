@@ -36,45 +36,50 @@ struct WorkoutCardView: View {
     var image = "Biceps_Curl_Person"
     var backgroundColor = Color("background3")
     var backgroundShadowColor = Color("backgroundShadow3")
+    @State var isDetailPresented = false
     var body: some View {
-        VStack(alignment: .center) {
-            Text(text)
-                .font(.title)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-                .lineLimit(3)
-                .padding(.top, 30)
-                .padding(.horizontal)
-                .frame(width: 240)
-            Spacer()
-            Image(image)
-                .resizable()
-                .renderingMode(.original)
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 200, height: 200)
-                .padding(.bottom, 30)
+        NavigationLink(destination: WorkoutDetailView(title: .constant(self.text)), isActive: $isDetailPresented) {
+            Button(action: {
+                print(self.text)
+                self.isDetailPresented.toggle()
+            }) {
+                VStack(alignment: .center) {
+                    Text(text)
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .lineLimit(3)
+                        .padding(.top, 30)
+                        .padding(.horizontal)
+                        .frame(width: 240)
+                    Spacer()
+                    Image(image)
+                        .resizable()
+                        .renderingMode(.original)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 200, height: 200)
+                        .padding(.bottom, 30)
+                }
+                .background(backgroundColor)
+                .cornerRadius(30)
+                .shadow(color: backgroundShadowColor, radius: 20, x: 0, y: 20)
+                .frame(width: 240, height: 340)
+            }
         }
-        .background(backgroundColor)
-        .cornerRadius(30)
-        .shadow(color: backgroundShadowColor, radius: 20, x: 0, y: 20)
-        .frame(width: 240, height: 340)
     }
 }
 
 struct WorkoutCardScrollView: View {
+    @State var isDetailPresented = false
     var workout = workoutItemData
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 ForEach(workout) { item in
-                    Button(action: {
-                        print("register")
-                    }) {
-                        WorkoutCardView(text: item.title, image: item.imageName, backgroundColor: item.backgroundColor, backgroundShadowColor: item.backgroundShadowColor)
-                            .padding(5)
-                    }
-                    
+                    WorkoutCardView(text: item.title, image: item.imageName, backgroundColor: item.backgroundColor, backgroundShadowColor: item.backgroundShadowColor)
+                        .padding(5)
                 }
+                
             }
             .padding([.horizontal, .bottom])
             .frame(height: 420)
