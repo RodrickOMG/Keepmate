@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class Utilities {
     static func isPasswordValid(_ password: String) -> Bool {
@@ -26,4 +27,6 @@ class Utilities {
             return true
         }
     }
+    
+    
 }

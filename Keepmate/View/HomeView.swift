@@ -11,7 +11,7 @@ import SwiftUI
 struct HomeView: View {
     @State var show = false
     @State var showProfile = false
-    @Binding var isLoginConfirmed: Bool
+    @Binding var isLogOutConfirmed: Bool
 
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -38,7 +38,9 @@ struct HomeView: View {
                     .animation(.spring())
             }
             
-            MenuView(show: $show, isLoginConfirmed: $isLoginConfirmed)
+            MenuView(show: $show, isLogOutConfirmed: $isLogOutConfirmed)
+            
+            
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
@@ -47,6 +49,7 @@ struct HomeView: View {
             self.show = false
             self.showProfile = false
         })
+        
     }
 }
 
@@ -56,13 +59,12 @@ struct MenuRow: View {
     var text = "My Account"
     @State var isPresented = false
     @State var isLogOut = false
-    @Binding var isLoginConfirmed: Bool
+    @Binding var isLogOutConfirmed: Bool
     @State var isFirstLogin = false
     @State var selection = 1
     
     var body: some View {
         HStack {
-            NavigationLink(destination: LoginView(), isActive: $isFirstLogin){EmptyView()}
             NavigationLink(destination: MenuDetails(selectedItem: $selection, isPresented: $isPresented), isActive: $isPresented) {
                 Button(action: {
                     if self.text == "Profile" {
@@ -89,15 +91,9 @@ struct MenuRow: View {
                 BmobUser.logout()
                 UserDefaults.standard.set("", forKey: "email")
                 UserDefaults.standard.set("", forKey: "username")
-                UserDefaults.standard.set("", forKey: "profilePic")
+                UserDefaults.standard.set("", forKey: "profilePicPath")
                 UserDefaults.standard.set(false, forKey: "isLogined")
-                print("Log out")
-                if UserDefaults.standard.bool(forKey: "firstLogin") == false {
-                    UserDefaults.standard.set(true, forKey: "firstLogin")
-                    self.isFirstLogin.toggle()
-                } else {
-                    self.isLoginConfirmed.toggle()
-                }
+                self.isLogOutConfirmed.toggle()
                 }, secondaryButton: .cancel())
         }
     }
@@ -114,12 +110,12 @@ let menuData = [
 struct MenuView: View {
     var menu = menuData
     @Binding var show : Bool
-    @Binding var isLoginConfirmed: Bool
+    @Binding var isLogOutConfirmed: Bool
     var body: some View {
         VStack(alignment: .leading, spacing: 30) {
             VStack {
                 ForEach(menu) { item in
-                    MenuRow(image: item.icon, text: item.title, isLoginConfirmed: self.$isLoginConfirmed)
+                    MenuRow(image: item.icon, text: item.title, isLogOutConfirmed: self.$isLogOutConfirmed)
                         .foregroundColor(Color("systemFont"))
                 }
                 Spacer()
@@ -196,11 +192,11 @@ struct MenuRight: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         Group{
-            HomeView(isLoginConfirmed: .constant(true)).previewDevice("iPhone Xs Max")
-            HomeView(isLoginConfirmed: .constant(true)).previewDevice("iPhone 11 Pro")
-            HomeView(isLoginConfirmed: .constant(true)).previewDevice("iPhone 11")
+            HomeView(isLogOutConfirmed: .constant(false)).previewDevice("iPhone Xs Max")
+            HomeView(isLogOutConfirmed: .constant(false)).previewDevice("iPhone 11 Pro")
+            HomeView(isLogOutConfirmed: .constant(false)).previewDevice("iPhone 11")
                 .environment(\.colorScheme, .dark)
-            HomeView(isLoginConfirmed: .constant(true)).previewDevice("iPhone 8")
+            HomeView(isLogOutConfirmed: .constant(false)).previewDevice("iPhone 8")
         }
     }
 }

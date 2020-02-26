@@ -25,12 +25,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            if UserDefaults.standard.bool(forKey: "isLogined") == true {
-                UserDefaults.standard.set(false, forKey: "firstLogin")
-                let contentView = TabBarHomeView(isLogin: .constant(true))
+            let user = BmobUser.current()
+            if UserDefaults.standard.bool(forKey: "isLogined") == true && (user != nil){
+                let contentView = TabBarHomeView()
                 window.rootViewController = UIHostingController(rootView: contentView)
             } else {
-                UserDefaults.standard.set(true, forKey: "firstLogin")
                 let contentView = LoginView()
                 window.rootViewController = UIHostingController(rootView: contentView)
             }

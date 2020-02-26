@@ -61,7 +61,7 @@ struct LoginView: View {
                     .padding(.bottom, -7.0)
                     MultilineTextView(text: $err)
                         .frame(minWidth: 0, maxWidth: 280, minHeight: 0, maxHeight: 50)
-                    NavigationLink(destination: TabBarHomeView(isLogin: $isLogined), isActive: $isLogined) {
+                    NavigationLink(destination: TabBarHomeView(), isActive: $isLogined) {
                         Button(action: {
                             self.loginPressed(self.email, self.password)
                         }) {

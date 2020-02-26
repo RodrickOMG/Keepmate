@@ -178,18 +178,29 @@ struct ProfileView: View {
                 getRemoteProfilePic()
             }
         }
-        
     }
     func getRemoteProfilePic() {
         let user = BmobUser.current()
         let profilePicFile = user?.object(forKey: "profilePic") as? BmobFile
-        guard let url = URL(string: profilePicFile!.url!) else {return}
-        do {
-            let data = try Data(contentsOf: url)
-            let uiImage = UIImage(data: data)
-            self.image = Image(uiImage: uiImage ?? UIImage())
-        }catch let error as NSError {
-            print(error)
+        if profilePicFile != nil {
+            let tempURL = profilePicFile!.url!
+            let urlWithoutHTTPS = tempURL.suffix(from: tempURL.index(tempURL.startIndex, offsetBy: 8))
+            guard let url = URL(string: String("http://" + urlWithoutHTTPS)) else {return}
+            print(url)
+            let task = URLSession.shared.dataTask(with: url as URL) { data, response, error in
+                guard let data = data else { return }
+                if error != nil {
+                    print(error as Any)
+                    self.image = Image("profile_default_male")
+                } else {
+                    let uiImage = UIImage(data: data)
+                    self.image = Image(uiImage: uiImage ?? UIImage())
+                    let filePath: String = UserInfo.savePic(data, self.username)
+                    UserDefaults.standard.set(filePath, forKey: "profilePicPath")
+                }
+            }
+            task.resume()
+        } else {
             self.image = Image("profile_default_male")
         }
     }

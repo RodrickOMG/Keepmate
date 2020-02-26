@@ -16,7 +16,7 @@ let items: [BottomBarItem] = [
 ]
 
 struct BasicView: View {
-    @Binding var isLogin: Bool
+    @Binding var isLogOutConfirmed: Bool
     let item: BottomBarItem
     let index: Int
     
@@ -30,7 +30,7 @@ struct BasicView: View {
     var body: some View {
         VStack {
             if index == 0 {
-                HomeView(isLoginConfirmed: $isLogin)
+                HomeView(isLogOutConfirmed: $isLogOutConfirmed)
             } else if index == 3 {
                 ProfileView(isPresented: .constant(true))
             }
@@ -40,34 +40,40 @@ struct BasicView: View {
 
 struct TabBarHomeView : View {
     @State private var selectedIndex: Int = 0
-    @Binding var isLogin: Bool
+    @State var isLogOutConfirmed = false
     
     var selectedItem: BottomBarItem {
         items[selectedIndex]
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
-                BasicView(isLogin: $isLogin, item: selectedItem, index: selectedIndex)
-                    .navigationBarTitle(Text(selectedItem.title))
-                BottomBar(selectedIndex: $selectedIndex, items: items)
+        ZStack {
+            NavigationView {
+                VStack {
+                    BasicView(isLogOutConfirmed: $isLogOutConfirmed, item: selectedItem, index: selectedIndex)
+                        .navigationBarTitle(Text(selectedItem.title))
+                    BottomBar(selectedIndex: $selectedIndex, items: items)
+                }
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
+            .navigationBarTitle(Text(""))
+            
+            ZStack {
+                LoginView()
+            }.offset(x: 0, y: self.isLogOutConfirmed ? 0 : UIApplication.shared.keyWindow?.frame.height ?? 0)
         }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
-        .navigationBarTitle(Text(""))
     }
 }
 
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
         Group{
-            TabBarHomeView(isLogin: .constant(true)).previewDevice("iPhone Xs Max")
-            TabBarHomeView(isLogin: .constant(true)).previewDevice("iPhone 11 Pro")
-            TabBarHomeView(isLogin: .constant(true)).previewDevice("iPhone 11")
+            TabBarHomeView().previewDevice("iPhone Xs Max")
+            TabBarHomeView().previewDevice("iPhone 11 Pro")
+            TabBarHomeView().previewDevice("iPhone 11")
                 .environment(\.colorScheme, .dark)
-            TabBarHomeView(isLogin: .constant(true)).previewDevice("iPhone 8")
+            TabBarHomeView().previewDevice("iPhone 8")
         }
     }
 }

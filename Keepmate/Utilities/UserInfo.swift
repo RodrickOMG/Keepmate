@@ -22,7 +22,6 @@ class UserInfo {
                 let weakFile = file
                 print("Successfully upload file")
                 user!.setObject(weakFile, forKey: "profilePic")
-                user!.setObject("helloworld", forKey: "profilePicName")
                 user!.updateInBackground { (isSuccessful, error) in
                     if error != nil {
                         print("save ", error as Any)
@@ -34,6 +33,26 @@ class UserInfo {
         }, withProgressBlock: { (process) in
             print("process:  ", process)
         })
+    }
+    
+    static func savePic(_ data: Data, _ picName: String) -> String{
+        let homeDirectory = NSHomeDirectory()
+        let documentPath = homeDirectory + "/Documents"
+        //文件管理器
+        let fileManager: FileManager = FileManager.default
+        //把刚刚图片转换的data对象拷贝至沙盒中 并保存为image.png
+        do {
+            try fileManager.createDirectory(atPath: documentPath, withIntermediateDirectories: true, attributes: nil)
+        }
+        catch let error {
+            print(error)
+        }
+        
+        let filename = "/" + picName + ".png"
+        fileManager.createFile(atPath: documentPath.appendingFormat(filename), contents: data, attributes: nil)
+        //得到选择后沙盒中图片的完整路径
+        let filePath: String = String(format: "%@%@", documentPath, filename)
+        return filePath
     }
      
     

@@ -82,7 +82,7 @@ struct RegisterView: View {
                 .padding(.bottom, -7.0)
                 MultilineTextView(text: $err)
                     .frame(minWidth: 0, maxWidth: 280, minHeight: 0, maxHeight: 50)
-                NavigationLink(destination: TabBarHomeView(isLogin: $isRegistered), isActive: $isRegistered) {
+                NavigationLink(destination: TabBarHomeView(), isActive: $isRegistered) {
                     Button(action: {
                         self.registerPressed(self.email, self.username, self.password)
                     }) {
