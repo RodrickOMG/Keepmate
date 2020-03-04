@@ -53,7 +53,7 @@ struct ProfileView: View {
                             }) {
                                 Image("profile_default_background")
                                     .resizable()
-                                    .scaledToFill()
+                                    .scaledToFit()
                                     .shadow(radius: 10)
                                     .opacity(0.1)
                                     .frame(minWidth: 0, maxWidth: .infinity, maxHeight: geo.size.height * 0.15)
@@ -170,10 +170,12 @@ struct ProfileView: View {
             let filePath = String(UserDefaults.standard.string(forKey: "profilePicPath")!)
             let url = URL.init(fileURLWithPath: filePath)
             do {
+                print("1")
                 let data = try Data(contentsOf: url)
                 let uiImage = UIImage(data: data)
                 self.image = Image(uiImage: uiImage ?? UIImage())
             } catch let error as NSError {
+                print("2")
                 print(error)
                 getRemoteProfilePic()
             }
@@ -184,15 +186,17 @@ struct ProfileView: View {
         let profilePicFile = user?.object(forKey: "profilePic") as? BmobFile
         if profilePicFile != nil {
             let tempURL = profilePicFile!.url!
-            let urlWithoutHTTPS = tempURL.suffix(from: tempURL.index(tempURL.startIndex, offsetBy: 8))
+            let urlWithoutHTTPS = tempURL.suffix(from: tempURL.index(tempURL.startIndex, offsetBy: 7))
             guard let url = URL(string: String("http://" + urlWithoutHTTPS)) else {return}
             print(url)
             let task = URLSession.shared.dataTask(with: url as URL) { data, response, error in
                 guard let data = data else { return }
                 if error != nil {
+                    print("3")
                     print(error as Any)
                     self.image = Image("profile_default_male")
                 } else {
+                    print("4")
                     let uiImage = UIImage(data: data)
                     self.image = Image(uiImage: uiImage ?? UIImage())
                     let filePath: String = UserInfo.savePic(data, self.username)

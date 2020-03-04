@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		487501672B693B41A6DA71AD /* Pods_Keepmate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B250FB8F4507C223B3A3E1 /* Pods_Keepmate.framework */; };
+		5221845D240BBD65008C623B /* model_hourglass.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5221845C240BBD65008C623B /* model_hourglass.mlmodel */; };
+		5221845F240BBD6B008C623B /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5221845E240BBD6B008C623B /* Measure.swift */; };
+		52218461240BBD71008C623B /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52218460240BBD71008C623B /* VideoCapture.swift */; };
+		52218467240BBD82008C623B /* UIImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52218463240BBD82008C623B /* UIImage+CVPixelBuffer.swift */; };
+		52218468240BBD82008C623B /* PredictedPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52218464240BBD82008C623B /* PredictedPoint.swift */; };
+		52218469240BBD82008C623B /* MovingAverageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52218465240BBD82008C623B /* MovingAverageFilter.swift */; };
+		5221846A240BBD82008C623B /* HeatmapPostProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52218466240BBD82008C623B /* HeatmapPostProcessor.swift */; };
+		5221846C240BBEAB008C623B /* model_cpm.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5221846B240BBEAB008C623B /* model_cpm.mlmodel */; };
 		52233CC023FD52A700D2DA46 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52233CBF23FD52A600D2DA46 /* ImagePicker.swift */; };
 		52233CC523FD8B8300D2DA46 /* CameraImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52233CC423FD8B8300D2DA46 /* CameraImagePicker.swift */; };
 		52233CC723FE27DE00D2DA46 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52233CC623FE27DE00D2DA46 /* UserInfo.swift */; };
@@ -28,6 +36,10 @@
 		52B6C38D23CCB0A7006B5104 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52B6C38B23CCB0A7006B5104 /* LaunchScreen.storyboard */; };
 		52B6C39623CCB4C1006B5104 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C39523CCB4C1006B5104 /* LoginView.swift */; };
 		52B6C39823CDA788006B5104 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C39723CDA788006B5104 /* RegisterView.swift */; };
+		52BD8981240E45AE0028B044 /* DrawingJointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD8980240E45AE0028B044 /* DrawingJointView.swift */; };
+		52BD8983240E7D2E0028B044 /* JointController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD8982240E7D2E0028B044 /* JointController.swift */; };
+		52BD8985240E7D950028B044 /* JointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD8984240E7D950028B044 /* JointViewController.swift */; };
+		52BD8987240E7D9B0028B044 /* Joint.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52BD8986240E7D9B0028B044 /* Joint.storyboard */; };
 		52E157FC23E6E9C800A35113 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E157FB23E6E9C800A35113 /* Constant.swift */; };
 		52E157FE23E6F52500A35113 /* MenuDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E157FD23E6F52500A35113 /* MenuDetails.swift */; };
 		52E38CE123D0730600CA7D56 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E38CE023D0730600CA7D56 /* BlurView.swift */; };
@@ -37,6 +49,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5221845C240BBD65008C623B /* model_hourglass.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = model_hourglass.mlmodel; sourceTree = "<group>"; };
+		5221845E240BBD6B008C623B /* Measure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
+		52218460240BBD71008C623B /* VideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
+		52218463240BBD82008C623B /* UIImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
+		52218464240BBD82008C623B /* PredictedPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictedPoint.swift; sourceTree = "<group>"; };
+		52218465240BBD82008C623B /* MovingAverageFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovingAverageFilter.swift; sourceTree = "<group>"; };
+		52218466240BBD82008C623B /* HeatmapPostProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatmapPostProcessor.swift; sourceTree = "<group>"; };
+		5221846B240BBEAB008C623B /* model_cpm.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = model_cpm.mlmodel; sourceTree = "<group>"; };
 		52233CBF23FD52A600D2DA46 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		52233CC423FD8B8300D2DA46 /* CameraImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraImagePicker.swift; sourceTree = "<group>"; };
 		52233CC623FE27DE00D2DA46 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -60,6 +80,10 @@
 		52B6C38E23CCB0A7006B5104 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52B6C39523CCB4C1006B5104 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		52B6C39723CDA788006B5104 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		52BD8980240E45AE0028B044 /* DrawingJointView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingJointView.swift; sourceTree = "<group>"; };
+		52BD8982240E7D2E0028B044 /* JointController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JointController.swift; sourceTree = "<group>"; };
+		52BD8984240E7D950028B044 /* JointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JointViewController.swift; sourceTree = "<group>"; };
+		52BD8986240E7D9B0028B044 /* Joint.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Joint.storyboard; sourceTree = "<group>"; };
 		52E157FB23E6E9C800A35113 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		52E157FD23E6F52500A35113 /* MenuDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetails.swift; sourceTree = "<group>"; };
 		52E38CE023D0730600CA7D56 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
@@ -89,6 +113,28 @@
 				E8B250FB8F4507C223B3A3E1 /* Pods_Keepmate.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		52218462240BBD82008C623B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				52218463240BBD82008C623B /* UIImage+CVPixelBuffer.swift */,
+				52218464240BBD82008C623B /* PredictedPoint.swift */,
+				52218465240BBD82008C623B /* MovingAverageFilter.swift */,
+				52218466240BBD82008C623B /* HeatmapPostProcessor.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		5221846D240E05B2008C623B /* DrawingJoint */ = {
+			isa = PBXGroup;
+			children = (
+				52BD8980240E45AE0028B044 /* DrawingJointView.swift */,
+				52BD8984240E7D950028B044 /* JointViewController.swift */,
+				52BD8982240E7D2E0028B044 /* JointController.swift */,
+				52BD8986240E7D9B0028B044 /* Joint.storyboard */,
+			);
+			path = DrawingJoint;
 			sourceTree = "<group>";
 		};
 		52233CC323FD7ACE00D2DA46 /* ImagePicker */ = {
@@ -127,9 +173,14 @@
 		5259E25A23F3B52100260694 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				5221845C240BBD65008C623B /* model_hourglass.mlmodel */,
+				5221846B240BBEAB008C623B /* model_cpm.mlmodel */,
+				5221845E240BBD6B008C623B /* Measure.swift */,
 				52233CC623FE27DE00D2DA46 /* UserInfo.swift */,
 				52E157FB23E6E9C800A35113 /* Constant.swift */,
+				52218460240BBD71008C623B /* VideoCapture.swift */,
 				5259E25B23F3B82000260694 /* Utilities.swift */,
+				52218462240BBD82008C623B /* Common */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -189,6 +240,7 @@
 		52B6C39423CCB406006B5104 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5221846D240E05B2008C623B /* DrawingJoint */,
 				52233CC323FD7ACE00D2DA46 /* ImagePicker */,
 				52A2548923F4564800652D7C /* BottomBar */,
 				5259E25123F3B3B200260694 /* GuidingViews */,
@@ -288,6 +340,7 @@
 				5259E25323F3B3F700260694 /* BWWalkthrough.storyboard in Resources */,
 				52B6C38D23CCB0A7006B5104 /* LaunchScreen.storyboard in Resources */,
 				52B6C38723CCB0A7006B5104 /* Assets.xcassets in Resources */,
+				52BD8987240E7D9B0028B044 /* Joint.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,9 +380,14 @@
 				52B6C38123CCB0A5006B5104 /* AppDelegate.swift in Sources */,
 				52E38CE123D0730600CA7D56 /* BlurView.swift in Sources */,
 				52A2548F23F4565D00652D7C /* BottomBar.swift in Sources */,
+				5221846C240BBEAB008C623B /* model_cpm.mlmodel in Sources */,
+				52218461240BBD71008C623B /* VideoCapture.swift in Sources */,
 				52E38CE323D0A80500CA7D56 /* UpdateListView.swift in Sources */,
+				52BD8985240E7D950028B044 /* JointViewController.swift in Sources */,
 				5259E25C23F3B82000260694 /* Utilities.swift in Sources */,
 				52F18EDE240426E60081A26E /* SwiftUIView.swift in Sources */,
+				5221845F240BBD6B008C623B /* Measure.swift in Sources */,
+				52218469240BBD82008C623B /* MovingAverageFilter.swift in Sources */,
 				5284B1FE23D021E000220660 /* HomeListView.swift in Sources */,
 				52A2548E23F4565D00652D7C /* BottomBarItemView.swift in Sources */,
 				52233CC023FD52A700D2DA46 /* ImagePicker.swift in Sources */,
@@ -337,13 +395,19 @@
 				52E157FE23E6F52500A35113 /* MenuDetails.swift in Sources */,
 				52A2548D23F4565D00652D7C /* BottomBarItem.swift in Sources */,
 				52B6C38323CCB0A5006B5104 /* SceneDelegate.swift in Sources */,
+				52218467240BBD82008C623B /* UIImage+CVPixelBuffer.swift in Sources */,
 				52F18EDC2403D2B00081A26E /* WorkoutDetailView.swift in Sources */,
+				5221845D240BBD65008C623B /* model_hourglass.mlmodel in Sources */,
 				526090E223CF487D00ED0192 /* HomeView.swift in Sources */,
+				5221846A240BBD82008C623B /* HeatmapPostProcessor.swift in Sources */,
+				52BD8983240E7D2E0028B044 /* JointController.swift in Sources */,
 				52B6C39623CCB4C1006B5104 /* LoginView.swift in Sources */,
 				52A8258223D156CC00AB8CCB /* TabBarHomeView.swift in Sources */,
 				52B6C38523CCB0A5006B5104 /* ContentView.swift in Sources */,
 				5263E8F023D1687600866887 /* SettingsView.swift in Sources */,
 				523D5F4323E92D81005418D5 /* ProfileView.swift in Sources */,
+				52BD8981240E45AE0028B044 /* DrawingJointView.swift in Sources */,
+				52218468240BBD82008C623B /* PredictedPoint.swift in Sources */,
 				52233CC723FE27DE00D2DA46 /* UserInfo.swift in Sources */,
 				52E157FC23E6E9C800A35113 /* Constant.swift in Sources */,
 			);

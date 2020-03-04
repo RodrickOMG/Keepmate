@@ -44,7 +44,7 @@ struct HomeView: View {
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
-        .navigationBarTitle(Text(""))
+        .navigationBarTitle(Text("Home"))
         .onDisappear(perform: {
             self.show = false
             self.showProfile = false

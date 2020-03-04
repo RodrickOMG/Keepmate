@@ -38,7 +38,7 @@ struct WorkoutCardView: View {
     var backgroundShadowColor = Color("backgroundShadow3")
     @State var isDetailPresented = false
     var body: some View {
-        NavigationLink(destination: WorkoutDetailView(title: .constant(self.text)), isActive: $isDetailPresented) {
+        NavigationLink(destination: WorkoutDetailView(title: .constant(self.text), isPresented: $isDetailPresented, bodyPoints: .constant([])), isActive: $isDetailPresented) {
             Button(action: {
                 print(self.text)
                 self.isDetailPresented.toggle()
