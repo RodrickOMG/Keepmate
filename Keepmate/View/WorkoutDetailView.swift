@@ -13,6 +13,7 @@ import SwiftUI
 struct CameraView : UIViewControllerRepresentable {
     @Binding var bodyPoints: [PredictedPoint?]
     // Init your ViewController
+    
     func makeUIViewController(context: UIViewControllerRepresentableContext<CameraView>) -> UIViewController {
         let controller = JointViewController()
         return controller
@@ -21,7 +22,7 @@ struct CameraView : UIViewControllerRepresentable {
     
     // Tbh no idea what to do here
     func updateUIViewController(_ uiViewController: CameraView.UIViewControllerType, context: UIViewControllerRepresentableContext<CameraView>) {
-
+        
     }
 }
 
@@ -58,6 +59,7 @@ struct WorkoutDetailView: View {
                     CameraView(bodyPoints: $bodyPoints)
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                     //DrawingView(bodyPoints: $bodyPoints)
+                    Text(String(bodyPoints.count))
                 }
                 
             }

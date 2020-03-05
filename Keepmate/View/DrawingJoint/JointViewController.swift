@@ -17,14 +17,16 @@ class JointViewController: UIViewController {
     
     // MARK: - UI Properties
     @IBOutlet weak var videoPreview: UIView!
-    var jointView: DrawingJointView!
+    
     @IBOutlet weak var labelsTableView: UITableView!
     
     @IBOutlet weak var inferenceLabel: UILabel!
     @IBOutlet weak var etimeLabel: UILabel!
     @IBOutlet weak var fpsLabel: UILabel!
     // MARK: - Performance Measurement Property
-    private let 👨‍🔧 = 📏()
+    let 👨‍🔧 = 📏()
+    
+    var delegate : PredictPointsDelegate?
     
     // MARK: - AV Property
     var videoCapture: VideoCapture!
@@ -47,6 +49,16 @@ class JointViewController: UIViewController {
     //
     var bodyPoints: [PredictedPoint?] = []
     
+    
+    lazy var jointView: DrawingJointView! = {
+        let view = DrawingJointView()
+        view.backgroundColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0)
+        view.frame = self.view.frame
+        return view
+    }()
+    
+    
+    
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +74,10 @@ class JointViewController: UIViewController {
         
         // setup delegate for performance measurement
         👨‍🔧.delegate = self
+        
+        view.addSubview(jointView)
+        
+        jointView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
     }
     
     override func didReceiveMemoryWarning() {
@@ -99,8 +115,11 @@ class JointViewController: UIViewController {
             if success {
                 // add preview view on the layer
                 let previewLayer = AVCaptureVideoPreviewLayer(session: self.videoCapture.captureSession)
+                let screenFrame = UIScreen.main.bounds
+                let screenWidth = screenFrame.size.width
+                let screenHeight = screenFrame.size.height
                 previewLayer.frame = self.view.frame
-                previewLayer.videoGravity = .resizeAspectFill
+                previewLayer.position = CGPoint(x: screenWidth / 2, y: (screenHeight - screenWidth) / 2)
                 self.view.layer.addSublayer(previewLayer)
 
                 // start video preview when setup is done
@@ -170,8 +189,7 @@ extension JointViewController {
             DispatchQueue.main.sync {
                 // draw line
                 //print(predictedPoints)
-                self.bodyPoints = predictedPoints
-                print(self.bodyPoints)
+                self.jointView.bodyPoints = predictedPoints
                 
                 // show key points description
                 //self.showKeypointsDescription(with: predictedPoints)
@@ -224,4 +242,5 @@ extension JointViewController: PredictPointsDelegate {
     func updatePredictPoints(bodyPoint: [PredictedPoint?]) {
         self.bodyPoints = bodyPoint
     }
+    
 }

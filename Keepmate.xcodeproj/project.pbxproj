@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		487501672B693B41A6DA71AD /* Pods_Keepmate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B250FB8F4507C223B3A3E1 /* Pods_Keepmate.framework */; };
+		5207F1AF2410B417007E8D5F /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5207F1AE2410B417007E8D5F /* Extension.swift */; };
 		5221845D240BBD65008C623B /* model_hourglass.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5221845C240BBD65008C623B /* model_hourglass.mlmodel */; };
 		5221845F240BBD6B008C623B /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5221845E240BBD6B008C623B /* Measure.swift */; };
 		52218461240BBD71008C623B /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52218460240BBD71008C623B /* VideoCapture.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5207F1AE2410B417007E8D5F /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		5221845C240BBD65008C623B /* model_hourglass.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = model_hourglass.mlmodel; sourceTree = "<group>"; };
 		5221845E240BBD6B008C623B /* Measure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
 		52218460240BBD71008C623B /* VideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			children = (
 				5221845C240BBD65008C623B /* model_hourglass.mlmodel */,
 				5221846B240BBEAB008C623B /* model_cpm.mlmodel */,
+				5207F1AE2410B417007E8D5F /* Extension.swift */,
 				5221845E240BBD6B008C623B /* Measure.swift */,
 				52233CC623FE27DE00D2DA46 /* UserInfo.swift */,
 				52E157FB23E6E9C800A35113 /* Constant.swift */,
@@ -406,6 +409,7 @@
 				52B6C38523CCB0A5006B5104 /* ContentView.swift in Sources */,
 				5263E8F023D1687600866887 /* SettingsView.swift in Sources */,
 				523D5F4323E92D81005418D5 /* ProfileView.swift in Sources */,
+				5207F1AF2410B417007E8D5F /* Extension.swift in Sources */,
 				52BD8981240E45AE0028B044 /* DrawingJointView.swift in Sources */,
 				52218468240BBD82008C623B /* PredictedPoint.swift in Sources */,
 				52233CC723FE27DE00D2DA46 /* UserInfo.swift in Sources */,
