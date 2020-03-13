@@ -48,7 +48,9 @@ class JointViewController: UIViewController {
     
     //
     var bodyPoints: [PredictedPoint?] = []
-    
+    var standardPoints: [CapturedPoint?] = []
+    var standardPointsTest: [PredictedPoint?] = []
+    var standardFlag = false
     
     lazy var jointView: DrawingJointView! = {
         let view = DrawingJointView()
@@ -57,7 +59,12 @@ class JointViewController: UIViewController {
         return view
     }()
     
-    
+    lazy var backButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Done", for: .normal)
+        button.addTarget(self, action: #selector(backToHome), for: .touchUpInside)
+        return button
+    }()
     
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
@@ -78,6 +85,10 @@ class JointViewController: UIViewController {
         view.addSubview(jointView)
         
         jointView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
+        
+        view.addSubview(backButton)
+        
+        backButton.anchor(top: jointView.topAnchor, paddingTop: 4)
     }
     
     override func didReceiveMemoryWarning() {
@@ -126,6 +137,22 @@ class JointViewController: UIViewController {
                 self.videoCapture.start()
             }
         }
+    }
+    
+    @objc func backToHome() {
+//        let vc = UIHostingController(rootView: TabBarHomeView())s
+//        vc.modalPresentationStyle = .fullScreen
+//        self.present(vc, animated: true, completion: nil)
+        //print(self.jointView.bodyPoints[0]?.maxPoint)
+        let predictedPoints = jointView.bodyPoints
+        let capturedPoints: [CapturedPoint?] = predictedPoints.map { predictedPoint in
+            guard let predictedPoint = predictedPoint else { return nil }
+            return CapturedPoint(predictedPoint: predictedPoint)
+        }
+        standardPoints = capturedPoints
+        standardPointsTest = predictedPoints
+        standardFlag = true
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -193,7 +220,10 @@ extension JointViewController {
                 
                 // show key points description
                 //self.showKeypointsDescription(with: predictedPoints)
-                
+                if standardFlag {
+                    //print(standardPoints.matchVector(with: predictedPoints))
+                    print(Utilities.judgePoints(predictedPoints, standardPointsTest))
+                }
                 // end of measure
                 self.👨‍🔧.🎬🤚()
             }
