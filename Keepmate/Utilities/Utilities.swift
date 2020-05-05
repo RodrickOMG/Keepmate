@@ -99,4 +99,22 @@ class Utilities {
         return Double(abs(atan2((p1?.x ?? 0)-(p2?.x ?? 0), (p1?.y ?? 0)-(p2?.y ?? 0))*180))/Double.pi
     }
     
+    static func Gossack_Squat(_ index: Int) -> [CapturedPoint?] {
+        var predictPoints: [PredictedPoint?] = []
+        let path = Bundle.main.path(forResource: "Cossack Squat", ofType: "plist")
+        let data = NSDictionary(contentsOfFile: path!)
+        let arr: NSArray = data!["process"] as! NSArray
+        
+        let pointsArr: NSArray = arr[index] as! NSArray
+        for j in 0...pointsArr.count-1 {
+            let pointArr: NSArray = pointsArr[j] as! NSArray
+            predictPoints.append(PredictedPoint.init(maxPoint: CGPoint(x: pointArr[0] as! Double, y: pointArr[1] as! Double), maxConfidence: pointArr[2] as! Double))
+        }
+        let capturedPoints: [CapturedPoint?] = predictPoints.map { predictedPoint in
+            guard let predictedPoint = predictedPoint else { return nil }
+            return CapturedPoint(predictedPoint: predictedPoint)
+        }
+        return capturedPoints
+    }
+    
 }

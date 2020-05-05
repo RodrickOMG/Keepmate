@@ -26,6 +26,7 @@
 		526090E223CF487D00ED0192 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526090E123CF487D00ED0192 /* HomeView.swift */; };
 		5263E8F023D1687600866887 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263E8EF23D1687600866887 /* SettingsView.swift */; };
 		5284B1FE23D021E000220660 /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5284B1FD23D021E000220660 /* HomeListView.swift */; };
+		528AFAF52438AA1D0030E453 /* Cossack Squat.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528AFAF42438AA1D0030E453 /* Cossack Squat.plist */; };
 		52A2548D23F4565D00652D7C /* BottomBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2548A23F4565D00652D7C /* BottomBarItem.swift */; };
 		52A2548E23F4565D00652D7C /* BottomBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2548B23F4565D00652D7C /* BottomBarItemView.swift */; };
 		52A2548F23F4565D00652D7C /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2548C23F4565D00652D7C /* BottomBar.swift */; };
@@ -45,6 +46,7 @@
 		52E157FE23E6F52500A35113 /* MenuDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E157FD23E6F52500A35113 /* MenuDetails.swift */; };
 		52E38CE123D0730600CA7D56 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E38CE023D0730600CA7D56 /* BlurView.swift */; };
 		52E38CE323D0A80500CA7D56 /* UpdateListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E38CE223D0A80500CA7D56 /* UpdateListView.swift */; };
+		52F16108245702C400986BF4 /* Cossack Squat.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 52F16107245702C400986BF4 /* Cossack Squat.mp4 */; };
 		52F18EDC2403D2B00081A26E /* WorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F18EDB2403D2AF0081A26E /* WorkoutDetailView.swift */; };
 		52F18EDE240426E60081A26E /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F18EDD240426E60081A26E /* SwiftUIView.swift */; };
 /* End PBXBuildFile section */
@@ -69,6 +71,7 @@
 		526090E123CF487D00ED0192 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5263E8EF23D1687600866887 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5284B1FD23D021E000220660 /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
+		528AFAF42438AA1D0030E453 /* Cossack Squat.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Cossack Squat.plist"; sourceTree = "<group>"; };
 		52A2548A23F4565D00652D7C /* BottomBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarItem.swift; sourceTree = "<group>"; };
 		52A2548B23F4565D00652D7C /* BottomBarItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarItemView.swift; sourceTree = "<group>"; };
 		52A2548C23F4565D00652D7C /* BottomBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
@@ -90,6 +93,7 @@
 		52E157FD23E6F52500A35113 /* MenuDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetails.swift; sourceTree = "<group>"; };
 		52E38CE023D0730600CA7D56 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		52E38CE223D0A80500CA7D56 /* UpdateListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateListView.swift; sourceTree = "<group>"; };
+		52F16107245702C400986BF4 /* Cossack Squat.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cossack Squat.mp4"; sourceTree = "<group>"; };
 		52F18EDB2403D2AF0081A26E /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
 		52F18EDD240426E60081A26E /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		6CD592B6EC32EAA7DC843147 /* Pods-Keepmate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keepmate.debug.xcconfig"; path = "Target Support Files/Pods-Keepmate/Pods-Keepmate.debug.xcconfig"; sourceTree = "<group>"; };
@@ -184,6 +188,7 @@
 				52218460240BBD71008C623B /* VideoCapture.swift */,
 				5259E25B23F3B82000260694 /* Utilities.swift */,
 				52218462240BBD82008C623B /* Common */,
+				528AFAF42438AA1D0030E453 /* Cossack Squat.plist */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -227,6 +232,7 @@
 		52B6C37F23CCB0A5006B5104 /* Keepmate */ = {
 			isa = PBXGroup;
 			children = (
+				52F16105245702A700986BF4 /* Static */,
 				52FC102B23F46503008A06C1 /* Preview Content */,
 				5259E25A23F3B52100260694 /* Utilities */,
 				52B6C38E23CCB0A7006B5104 /* Info.plist */,
@@ -262,6 +268,22 @@
 				52F18EDD240426E60081A26E /* SwiftUIView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		52F16105245702A700986BF4 /* Static */ = {
+			isa = PBXGroup;
+			children = (
+				52F16106245702B700986BF4 /* Video */,
+			);
+			path = Static;
+			sourceTree = "<group>";
+		};
+		52F16106245702B700986BF4 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				52F16107245702C400986BF4 /* Cossack Squat.mp4 */,
+			);
+			path = Video;
 			sourceTree = "<group>";
 		};
 		52FC102B23F46503008A06C1 /* Preview Content */ = {
@@ -343,7 +365,9 @@
 				5259E25323F3B3F700260694 /* BWWalkthrough.storyboard in Resources */,
 				52B6C38D23CCB0A7006B5104 /* LaunchScreen.storyboard in Resources */,
 				52B6C38723CCB0A7006B5104 /* Assets.xcassets in Resources */,
+				52F16108245702C400986BF4 /* Cossack Squat.mp4 in Resources */,
 				52BD8987240E7D9B0028B044 /* Joint.storyboard in Resources */,
+				528AFAF52438AA1D0030E453 /* Cossack Squat.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

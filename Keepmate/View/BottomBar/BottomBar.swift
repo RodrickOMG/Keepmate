@@ -10,6 +10,7 @@ import SwiftUI
 
 public struct BottomBar : View {
     @Binding public var selectedIndex: Int
+    @State var isSelected = [true, false, false, false]
     
     public let items: [BottomBarItem]
     
@@ -20,9 +21,18 @@ public struct BottomBar : View {
     
     func itemView(at index: Int) -> some View {
         Button(action: {
-            withAnimation { self.selectedIndex = index }
+            withAnimation {
+                self.selectedIndex = index
+                for i in 0...self.isSelected.count-1 {
+                    if(i != index) {
+                        self.isSelected[i] = false
+                    } else {
+                        self.isSelected[i] = true
+                    }
+                }
+            }
         }) {
-            BottomBarItemView(isSelected: index == selectedIndex, item: items[index])
+            BottomBarItemView(isSelected: $isSelected[index], item: items[index])
         }
     }
     
@@ -30,7 +40,6 @@ public struct BottomBar : View {
         HStack(alignment: .bottom) {
             ForEach(0..<items.count) { index in
                 self.itemView(at: index)
-                
                 if index != self.items.count-1 {
                     Spacer()
                 }

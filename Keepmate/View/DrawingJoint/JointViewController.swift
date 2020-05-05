@@ -12,6 +12,10 @@ import Vision
 import CoreMedia
 import AVFoundation
 
+let screenFrame = UIScreen.main.bounds
+let screenWidth = screenFrame.size.width
+let screenHeight = screenFrame.size.height
+
 class JointViewController: UIViewController {
     public typealias DetectObjectsCompletion = ([PredictedPoint?]?, Error?) -> Void
     
@@ -23,10 +27,12 @@ class JointViewController: UIViewController {
     @IBOutlet weak var inferenceLabel: UILabel!
     @IBOutlet weak var etimeLabel: UILabel!
     @IBOutlet weak var fpsLabel: UILabel!
+    
+    
     // MARK: - Performance Measurement Property
     let 👨‍🔧 = 📏()
     
-    var delegate : PredictPointsDelegate?
+    var delegate : CameraViewDelegate?
     
     // MARK: - AV Property
     var videoCapture: VideoCapture!
@@ -51,6 +57,16 @@ class JointViewController: UIViewController {
     var standardPoints: [CapturedPoint?] = []
     var standardPointsTest: [PredictedPoint?] = []
     var standardFlag = false
+    var standardIndex = 0
+    var standardPassFlag = false
+    var standardCounsequentCount = 0
+    var scoreSum = 0.0
+    var tempScore: [Double] = [0.0, 0.0]
+    var motionCount = 0
+    var startTime = CFAbsoluteTimeGetCurrent()
+    public var finishFlag = false
+    
+    public var name: String = String("Cossack Squat")
     
     lazy var jointView: DrawingJointView! = {
         let view = DrawingJointView()
@@ -62,14 +78,22 @@ class JointViewController: UIViewController {
     lazy var backButton: UIButton = {
         let button = UIButton()
         button.setTitle("Done", for: .normal)
-        button.addTarget(self, action: #selector(backToHome), for: .touchUpInside)
+        button.addTarget(self, action: #selector(capturePoints), for: .touchUpInside)
         return button
     }()
+    
+    lazy var matchingValueLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont(name: "Courier", size: 25)
+        return label
+    }()
+    
     
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // setup the model
         setUpModel()
         
@@ -77,18 +101,19 @@ class JointViewController: UIViewController {
         setUpCamera()
         
         // setup tableview datasource on bottom
+        
+        loadWorkoutInfo()
         //labelsTableView.dataSource = self
         
         // setup delegate for performance measurement
         👨‍🔧.delegate = self
         
         view.addSubview(jointView)
-        
         jointView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
-        
         view.addSubview(backButton)
-        
         backButton.anchor(top: jointView.topAnchor, paddingTop: 4)
+        view.addSubview(matchingValueLabel)
+        matchingValueLabel.anchor(top: jointView.topAnchor, paddingTop: (screenHeight - screenWidth) / 2, paddingLeft: screenWidth / 2)
     }
     
     override func didReceiveMemoryWarning() {
@@ -126,9 +151,6 @@ class JointViewController: UIViewController {
             if success {
                 // add preview view on the layer
                 let previewLayer = AVCaptureVideoPreviewLayer(session: self.videoCapture.captureSession)
-                let screenFrame = UIScreen.main.bounds
-                let screenWidth = screenFrame.size.width
-                let screenHeight = screenFrame.size.height
                 previewLayer.frame = self.view.frame
                 previewLayer.position = CGPoint(x: screenWidth / 2, y: (screenHeight - screenWidth) / 2)
                 self.view.layer.addSublayer(previewLayer)
@@ -139,7 +161,14 @@ class JointViewController: UIViewController {
         }
     }
     
-    @objc func backToHome() {
+    func loadWorkoutInfo() {
+        let path = Bundle.main.path(forResource: "Cossack Squat", ofType: "plist")
+        let data = NSDictionary(contentsOfFile: path!)
+        let arr: NSArray = data!["process"] as! NSArray
+        motionCount = arr.count
+    }
+    
+    @objc func capturePoints() {
 //        let vc = UIHostingController(rootView: TabBarHomeView())s
 //        vc.modalPresentationStyle = .fullScreen
 //        self.present(vc, animated: true, completion: nil)
@@ -150,9 +179,48 @@ class JointViewController: UIViewController {
             return CapturedPoint(predictedPoint: predictedPoint)
         }
         standardPoints = capturedPoints
-        standardPointsTest = predictedPoints
-        standardFlag = true
+        print(predictedPoints)
+    }
+    
+    func compareWithStandardPoints() {
+        if standardPassFlag {
+            standardIndex += 1
+        }
         
+        if standardIndex < motionCount {
+            standardPoints = Utilities.Gossack_Squat(standardIndex)
+            if standardFlag {
+                //print(standardPoints.matchVector(with: predictedPoints))
+                //print(Utilities.judgePoints(predictedPoints, standardPointsTest))
+                standardPassFlag = false
+                let matchValue = standardPoints.matchVector(with: self.jointView.bodyPoints)
+                if matchValue > 0.8 {
+                    standardCounsequentCount += 1
+                    if standardCounsequentCount >= 3 {
+                        standardPassFlag = true
+                        standardCounsequentCount = 0
+                        scoreSum += tempScore[0] + tempScore[1] + Double(matchValue) * 100
+                        tempScore = [0.0, 0.0]
+                        print("hhh")
+                    } else {
+                        tempScore[standardCounsequentCount-1] = Double(matchValue) * 100
+                    }
+                } else {
+                    standardCounsequentCount = 0
+                }
+                self.matchingValueLabel.text = String(format: "%.2f%", matchValue * 100) + "%"
+            }
+        } else {
+            print("Finish!!!")
+            finishFlag = true
+            standardFlag = false
+            let score = scoreSum / Double((motionCount * 3))
+            let endTime = CFAbsoluteTimeGetCurrent()
+            let duration = endTime - startTime
+            print("Score: ", score)
+            print("Duration: ", duration)
+            delegate?.CameraViewDidFinished(self)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -163,6 +231,15 @@ class JointViewController: UIViewController {
     
     func resizePreviewLayer() {
         videoCapture.previewLayer?.frame = self.view.bounds
+    }
+    
+    func begin() {
+        standardFlag = true
+        startTime = CFAbsoluteTimeGetCurrent()
+    }
+    
+    func pause() {
+        standardFlag = false
     }
 }
 
@@ -217,13 +294,12 @@ extension JointViewController {
                 // draw line
                 //print(predictedPoints)
                 self.jointView.bodyPoints = predictedPoints
-                
+                if !finishFlag {
+                    compareWithStandardPoints()
+                }
                 // show key points description
                 //self.showKeypointsDescription(with: predictedPoints)
-                if standardFlag {
-                    //print(standardPoints.matchVector(with: predictedPoints))
-                    print(Utilities.judgePoints(predictedPoints, standardPointsTest))
-                }
+                
                 // end of measure
                 self.👨‍🔧.🎬🤚()
             }
@@ -268,9 +344,4 @@ extension JointViewController: 📏Delegate {
     }
 }
 
-extension JointViewController: PredictPointsDelegate {
-    func updatePredictPoints(bodyPoint: [PredictedPoint?]) {
-        self.bodyPoints = bodyPoint
-    }
-    
-}
+

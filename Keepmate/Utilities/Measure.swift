@@ -11,8 +11,8 @@ import UIKit
 protocol 📏Delegate {
     func updateMeasure(inferenceTime: Double, executionTime: Double, fps: Int)
 }
-protocol PredictPointsDelegate {
-    func updatePredictPoints(bodyPoint: [PredictedPoint?])
+protocol CameraViewDelegate: NSObjectProtocol {
+    func CameraViewDidFinished(_ viewController: JointViewController)
 }
 // Performance Measurement
 class 📏 {

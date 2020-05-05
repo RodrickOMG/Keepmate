@@ -9,7 +9,7 @@
 import SwiftUI
 
 public struct BottomBarItemView: View {
-    public let isSelected: Bool
+    @Binding var isSelected: Bool
     public let item: BottomBarItem
     
     public var body: some View {
