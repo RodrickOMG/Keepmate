@@ -13,6 +13,8 @@ protocol 📏Delegate {
 }
 protocol CameraViewDelegate: NSObjectProtocol {
     func CameraViewDidFinished(_ viewController: JointViewController)
+    func OneGroupDidFinished(_ viewController: JointViewController)
+    func ConfirmDesiredGoal(_ viewController: JointViewController)
 }
 // Performance Measurement
 class 📏 {

@@ -16,11 +16,14 @@ struct CameraView : UIViewControllerRepresentable {
     @Binding var title: String
     @Binding var isBegin: Bool
     @Binding var isFinished: Bool
+    @Binding var desiredGoal: Int
+    @Binding var currentNum: Int
     // Init your ViewController
     
     func makeUIViewController(context: Context) -> JointViewController {
         let controller = JointViewController()
         controller.name = title
+        controller.desiredGoal = desiredGoal
         controller.delegate = context.coordinator
         return controller
     }
@@ -36,21 +39,35 @@ struct CameraView : UIViewControllerRepresentable {
     }
     
     func makeCoordinator() -> CameraView.Coordinator {
-        return Coordinator(isFinished: $isFinished)
+        return Coordinator(isFinished: $isFinished, currentNum: $currentNum, desiredGoal: $desiredGoal)
     }
 }
 
 extension CameraView {
     class Coordinator: NSObject, CameraViewDelegate {
+
         @Binding var isFinished: Bool
+        @Binding var currentNum: Int
+        @Binding var desiredGoal: Int
         
-        init(isFinished: Binding<Bool>) {
+        init(isFinished: Binding<Bool>, currentNum: Binding<Int>, desiredGoal: Binding<Int>) {
             _isFinished = isFinished
+            _currentNum = currentNum
+            _desiredGoal = desiredGoal
         }
         
         func CameraViewDidFinished(_ viewController: JointViewController) {
             isFinished = viewController.finishFlag
         }
+        
+        func OneGroupDidFinished(_ viewController: JointViewController) {
+            currentNum = viewController.successCount
+        }
+        
+        func ConfirmDesiredGoal(_ viewController: JointViewController) {
+            viewController.desiredGoal = desiredGoal
+        }
+        
     }
 }
 
@@ -136,6 +153,8 @@ struct WorkoutDetailView: View {
     @State var isTimeLabelPresented = false
     @State var isBegin = false
     @State var isFinished = false
+    @State var desiredGoal = 10
+    @State var currentNum = 0
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect() // timer for countdown
     
@@ -160,13 +179,13 @@ struct WorkoutDetailView: View {
                     PlayerView(isBegin: $isBegin, isFinished: $isFinished)
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 220)
                     HStack {
-                        Text("test")
+                        Text(String(self.currentNum))
                     }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 30)
                     .background(Color("mainBackgroundShadow"))
                     .offset(x: 0, y: -20)
                     
-                    CameraView(bodyPoints: $bodyPoints, title: $title, isBegin: $isBegin, isFinished: $isFinished)
+                    CameraView(bodyPoints: $bodyPoints, title: $title, isBegin: $isBegin, isFinished: $isFinished, desiredGoal: $desiredGoal, currentNum: $currentNum)
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                     
                     //DrawingView(bodyPoints: $bodyPoints)
@@ -202,7 +221,7 @@ struct WorkoutDetailView: View {
                     }
             }
             .opacity(isTimeLabelPresented ? 1 : 0)
-            workoutIntroductionCard(title: $title, isTimeLabelPresented: $isTimeLabelPresented)
+            workoutIntroductionCard(title: $title, isTimeLabelPresented: $isTimeLabelPresented, desiredGoal: $desiredGoal)
                 .frame(minWidth: 0, maxWidth: 300, minHeight: 0, maxHeight: 400)
                 .padding()
                 .padding(.horizontal)
@@ -211,8 +230,8 @@ struct WorkoutDetailView: View {
                 .shadow(radius: 20)
                 .opacity(isTimeLabelPresented || isBegin ? 0 : 1)
             VStack {
-                Text("Finish!")
-                    .font(.largeTitle)
+                Image("good_job")
+                    .resizable()
                 Button(action: {
                     self.isPresented.toggle()
                 }) {
@@ -260,6 +279,7 @@ struct WorkoutDetailView: View {
 struct workoutIntroductionCard: View {
     @Binding var title: String
     @Binding var isTimeLabelPresented: Bool
+    @Binding var desiredGoal: Int
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -279,6 +299,12 @@ struct workoutIntroductionCard: View {
                 Text("·When squatting, the inside of the straight leg stretches.\n·When the body is translated, there is a sense of stretch on the inside of the thighs on both sides.")
                     .font(.body)
                     .foregroundColor(Color("systemFont"))
+                Text("Desired amount of \(title)")
+                    .font(.headline)
+                    .lineLimit(nil)
+                Stepper(value: $desiredGoal, in: 10...50, step: 1) {
+                    Text("\(desiredGoal)")
+                }
                 Spacer()
                 Button(action: {
                     self.isTimeLabelPresented.toggle()

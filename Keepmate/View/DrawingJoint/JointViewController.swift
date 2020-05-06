@@ -52,14 +52,24 @@ class JointViewController: UIViewController {
     // Inference Result Data
     private var tableData: [PredictedPoint?] = []
     
-    //
+    // number of desired amount
+    public var desiredGoal: Int = 0
+    
+    
     var bodyPoints: [PredictedPoint?] = []
+    // Standard points to match
     var standardPoints: [CapturedPoint?] = []
     var standardPointsTest: [PredictedPoint?] = []
+    // whether to begin the match
     var standardFlag = false
+    // workout step index
     var standardIndex = 0
+    // whether pass the current step
     var standardPassFlag = false
-    var standardCounsequentCount = 0
+    // consequent number to pass current step
+    let standardConsequentNum = 3
+    var standardConsequentCount = 0
+    var successCount = 0
     var scoreSum = 0.0
     var tempScore: [Double] = [0.0, 0.0]
     var motionCount = 0
@@ -195,31 +205,40 @@ class JointViewController: UIViewController {
                 standardPassFlag = false
                 let matchValue = standardPoints.matchVector(with: self.jointView.bodyPoints)
                 if matchValue > 0.8 {
-                    standardCounsequentCount += 1
-                    if standardCounsequentCount >= 3 {
+                    standardConsequentCount += 1
+                    if standardConsequentCount >= standardConsequentNum {
                         standardPassFlag = true
-                        standardCounsequentCount = 0
+                        standardConsequentCount = 0
                         scoreSum += tempScore[0] + tempScore[1] + Double(matchValue) * 100
                         tempScore = [0.0, 0.0]
                         print("hhh")
                     } else {
-                        tempScore[standardCounsequentCount-1] = Double(matchValue) * 100
+                        tempScore[standardConsequentCount-1] = Double(matchValue) * 100
                     }
                 } else {
-                    standardCounsequentCount = 0
+                    standardConsequentCount = 0
                 }
                 self.matchingValueLabel.text = String(format: "%.2f%", matchValue * 100) + "%"
             }
         } else {
-            print("Finish!!!")
-            finishFlag = true
-            standardFlag = false
-            let score = scoreSum / Double((motionCount * 3))
-            let endTime = CFAbsoluteTimeGetCurrent()
-            let duration = endTime - startTime
-            print("Score: ", score)
-            print("Duration: ", duration)
-            delegate?.CameraViewDidFinished(self)
+            delegate?.ConfirmDesiredGoal(self)
+            successCount += 1
+            print("Success count: ", successCount)
+            delegate?.OneGroupDidFinished(self)
+            if successCount >= desiredGoal {
+                finishFlag = true
+                standardFlag = false
+                let score = scoreSum / Double((motionCount * standardConsequentNum * desiredGoal))
+                let endTime = CFAbsoluteTimeGetCurrent()
+                let duration = endTime - startTime
+                print("Score: ", score)
+                print("Duration: ", duration)
+                delegate?.CameraViewDidFinished(self)
+            } else {
+                standardIndex = 0
+                standardConsequentCount = 0
+                standardPassFlag = false
+            }
         }
     }
     
