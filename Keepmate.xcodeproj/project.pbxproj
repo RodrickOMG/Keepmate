@@ -39,9 +39,11 @@
 		52B6C39623CCB4C1006B5104 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C39523CCB4C1006B5104 /* LoginView.swift */; };
 		52B6C39823CDA788006B5104 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6C39723CDA788006B5104 /* RegisterView.swift */; };
 		52BD8981240E45AE0028B044 /* DrawingJointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD8980240E45AE0028B044 /* DrawingJointView.swift */; };
-		52BD8983240E7D2E0028B044 /* JointController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD8982240E7D2E0028B044 /* JointController.swift */; };
 		52BD8985240E7D950028B044 /* JointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD8984240E7D950028B044 /* JointViewController.swift */; };
 		52BD8987240E7D9B0028B044 /* Joint.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52BD8986240E7D9B0028B044 /* Joint.storyboard */; };
+		52D3B38224644463004CC343 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3B38124644463004CC343 /* PlayerView.swift */; };
+		52D3B38424644567004CC343 /* JointRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3B38324644567004CC343 /* JointRepresentable.swift */; };
+		52D3B388246446F1004CC343 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3B387246446F1004CC343 /* ProgressView.swift */; };
 		52E157FC23E6E9C800A35113 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E157FB23E6E9C800A35113 /* Constant.swift */; };
 		52E157FE23E6F52500A35113 /* MenuDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E157FD23E6F52500A35113 /* MenuDetails.swift */; };
 		52E38CE123D0730600CA7D56 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E38CE023D0730600CA7D56 /* BlurView.swift */; };
@@ -86,9 +88,11 @@
 		52B6C39523CCB4C1006B5104 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		52B6C39723CDA788006B5104 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		52BD8980240E45AE0028B044 /* DrawingJointView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingJointView.swift; sourceTree = "<group>"; };
-		52BD8982240E7D2E0028B044 /* JointController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JointController.swift; sourceTree = "<group>"; };
 		52BD8984240E7D950028B044 /* JointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JointViewController.swift; sourceTree = "<group>"; };
 		52BD8986240E7D9B0028B044 /* Joint.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Joint.storyboard; sourceTree = "<group>"; };
+		52D3B38124644463004CC343 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		52D3B38324644567004CC343 /* JointRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JointRepresentable.swift; sourceTree = "<group>"; };
+		52D3B387246446F1004CC343 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		52E157FB23E6E9C800A35113 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		52E157FD23E6F52500A35113 /* MenuDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetails.swift; sourceTree = "<group>"; };
 		52E38CE023D0730600CA7D56 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
@@ -132,15 +136,15 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		5221846D240E05B2008C623B /* DrawingJoint */ = {
+		5221846D240E05B2008C623B /* Joint */ = {
 			isa = PBXGroup;
 			children = (
-				52BD8980240E45AE0028B044 /* DrawingJointView.swift */,
 				52BD8984240E7D950028B044 /* JointViewController.swift */,
-				52BD8982240E7D2E0028B044 /* JointController.swift */,
 				52BD8986240E7D9B0028B044 /* Joint.storyboard */,
+				52D3B38324644567004CC343 /* JointRepresentable.swift */,
+				52BD8980240E45AE0028B044 /* DrawingJointView.swift */,
 			);
-			path = DrawingJoint;
+			path = Joint;
 			sourceTree = "<group>";
 		};
 		52233CC323FD7ACE00D2DA46 /* ImagePicker */ = {
@@ -249,25 +253,43 @@
 		52B6C39423CCB406006B5104 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5221846D240E05B2008C623B /* DrawingJoint */,
+				52D3B386246446B4004CC343 /* Utilities */,
+				52D3B38524644684004CC343 /* Home */,
+				5221846D240E05B2008C623B /* Joint */,
 				52233CC323FD7ACE00D2DA46 /* ImagePicker */,
 				52A2548923F4564800652D7C /* BottomBar */,
 				5259E25123F3B3B200260694 /* GuidingViews */,
-				52E38CE023D0730600CA7D56 /* BlurView.swift */,
 				523D5F4223E92D81005418D5 /* ProfileView.swift */,
 				52B6C38423CCB0A5006B5104 /* ContentView.swift */,
-				526090E123CF487D00ED0192 /* HomeView.swift */,
-				5284B1FD23D021E000220660 /* HomeListView.swift */,
 				52B6C39523CCB4C1006B5104 /* LoginView.swift */,
 				52B6C39723CDA788006B5104 /* RegisterView.swift */,
 				52E38CE223D0A80500CA7D56 /* UpdateListView.swift */,
 				52A8258123D156CC00AB8CCB /* TabBarHomeView.swift */,
 				5263E8EF23D1687600866887 /* SettingsView.swift */,
-				52E157FD23E6F52500A35113 /* MenuDetails.swift */,
 				52F18EDB2403D2AF0081A26E /* WorkoutDetailView.swift */,
 				52F18EDD240426E60081A26E /* SwiftUIView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		52D3B38524644684004CC343 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				526090E123CF487D00ED0192 /* HomeView.swift */,
+				5284B1FD23D021E000220660 /* HomeListView.swift */,
+				52E157FD23E6F52500A35113 /* MenuDetails.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		52D3B386246446B4004CC343 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				52D3B38124644463004CC343 /* PlayerView.swift */,
+				52D3B387246446F1004CC343 /* ProgressView.swift */,
+				52E38CE023D0730600CA7D56 /* BlurView.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		52F16105245702A700986BF4 /* Static */ = {
@@ -407,6 +429,7 @@
 				52B6C38123CCB0A5006B5104 /* AppDelegate.swift in Sources */,
 				52E38CE123D0730600CA7D56 /* BlurView.swift in Sources */,
 				52A2548F23F4565D00652D7C /* BottomBar.swift in Sources */,
+				52D3B38424644567004CC343 /* JointRepresentable.swift in Sources */,
 				5221846C240BBEAB008C623B /* model_cpm.mlmodel in Sources */,
 				52218461240BBD71008C623B /* VideoCapture.swift in Sources */,
 				52E38CE323D0A80500CA7D56 /* UpdateListView.swift in Sources */,
@@ -421,15 +444,16 @@
 				52B6C39823CDA788006B5104 /* RegisterView.swift in Sources */,
 				52E157FE23E6F52500A35113 /* MenuDetails.swift in Sources */,
 				52A2548D23F4565D00652D7C /* BottomBarItem.swift in Sources */,
+				52D3B388246446F1004CC343 /* ProgressView.swift in Sources */,
 				52B6C38323CCB0A5006B5104 /* SceneDelegate.swift in Sources */,
 				52218467240BBD82008C623B /* UIImage+CVPixelBuffer.swift in Sources */,
 				52F18EDC2403D2B00081A26E /* WorkoutDetailView.swift in Sources */,
 				5221845D240BBD65008C623B /* model_hourglass.mlmodel in Sources */,
 				526090E223CF487D00ED0192 /* HomeView.swift in Sources */,
 				5221846A240BBD82008C623B /* HeatmapPostProcessor.swift in Sources */,
-				52BD8983240E7D2E0028B044 /* JointController.swift in Sources */,
 				52B6C39623CCB4C1006B5104 /* LoginView.swift in Sources */,
 				52A8258223D156CC00AB8CCB /* TabBarHomeView.swift in Sources */,
+				52D3B38224644463004CC343 /* PlayerView.swift in Sources */,
 				52B6C38523CCB0A5006B5104 /* ContentView.swift in Sources */,
 				5263E8F023D1687600866887 /* SettingsView.swift in Sources */,
 				523D5F4323E92D81005418D5 /* ProfileView.swift in Sources */,

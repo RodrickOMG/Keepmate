@@ -10,143 +10,9 @@ import SwiftUI
 import AVFoundation
 
 
-// Need UIViewControllerRepresentable to show any UIViewController in SwiftUI
-struct CameraView : UIViewControllerRepresentable {
-    @Binding var bodyPoints: [PredictedPoint?]
-    @Binding var title: String
-    @Binding var isBegin: Bool
-    @Binding var isFinished: Bool
-    @Binding var desiredGoal: Int
-    @Binding var currentNum: Int
-    // Init your ViewController
-    
-    func makeUIViewController(context: Context) -> JointViewController {
-        let controller = JointViewController()
-        controller.name = title
-        controller.desiredGoal = desiredGoal
-        controller.delegate = context.coordinator
-        return controller
-    }
-    
-    
-    // Tbh no idea what to do here
-    func updateUIViewController(_ uiViewController: JointViewController, context: Context) {
-        if isBegin {
-            uiViewController.begin()
-        } else {
-            uiViewController.pause()
-        }
-    }
-    
-    func makeCoordinator() -> CameraView.Coordinator {
-        return Coordinator(isFinished: $isFinished, currentNum: $currentNum, desiredGoal: $desiredGoal)
-    }
-}
-
-extension CameraView {
-    class Coordinator: NSObject, CameraViewDelegate {
-
-        @Binding var isFinished: Bool
-        @Binding var currentNum: Int
-        @Binding var desiredGoal: Int
-        
-        init(isFinished: Binding<Bool>, currentNum: Binding<Int>, desiredGoal: Binding<Int>) {
-            _isFinished = isFinished
-            _currentNum = currentNum
-            _desiredGoal = desiredGoal
-        }
-        
-        func CameraViewDidFinished(_ viewController: JointViewController) {
-            isFinished = viewController.finishFlag
-        }
-        
-        func OneGroupDidFinished(_ viewController: JointViewController) {
-            currentNum = viewController.successCount
-        }
-        
-        func ConfirmDesiredGoal(_ viewController: JointViewController) {
-            viewController.desiredGoal = desiredGoal
-        }
-        
-    }
-}
-
-//
-struct DrawingView: UIViewRepresentable {
-    
-    @Binding var bodyPoints: [PredictedPoint?]
-    
-    func makeUIView(context: UIViewRepresentableContext<DrawingView>) -> DrawingJointView {
-        let DrawingView = DrawingJointView()
-        return DrawingView
-    }
-    
-    func updateUIView(_ uiView: DrawingJointView, context: UIViewRepresentableContext<DrawingView>) {
-        
-    }
-    
-}
-
-// video player
-struct PlayerView: UIViewRepresentable {
-    @Binding var isBegin: Bool
-    @Binding var isFinished: Bool
-    
-    func updateUIView(_ uiView: PlayerUIView, context: Context) {
-        if isBegin {
-            uiView.beginPlayVideo()
-        }
-        if isFinished {
-            uiView.stopPlayVideo()
-        }
-    }
-    func makeUIView(context: Context) -> PlayerUIView {
-        return PlayerUIView(frame: .zero)
-    }
-}
-
-class PlayerUIView: UIView {
-    private let playerLayer = AVPlayerLayer()
-    var player = AVPlayer()
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        let mediaPath = Bundle.main.path(forResource: "Cossack Squat", ofType: "mp4")
-        let mediaURL = URL(fileURLWithPath: mediaPath!)
-        
-        player = AVPlayer(url:mediaURL as URL)
-        player.actionAtItemEnd = .none
-        
-        playerLayer.player = player
-        NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd(notification:)), name: .AVPlayerItemDidPlayToEndTime,
-                                               object: player.currentItem)
-        
-        layer.addSublayer(playerLayer)
-    }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        playerLayer.frame = bounds
-    }
-    @objc func playerItemDidReachEnd(notification: Notification) {
-        if let playerItem = notification.object as? AVPlayerItem {
-            playerItem.seek(to: .zero, completionHandler: nil)
-        }
-    }
-    func beginPlayVideo() {
-        player.play()
-    }
-    func stopPlayVideo() {
-        player.pause()
-    }
-}
-
 struct WorkoutDetailView: View {
     @Binding var title: String
     @Binding var isPresented: Bool
-    @Binding var bodyPoints: [PredictedPoint?]
     @State var viewState = CGSize.zero // position
     @State var timeRemaining = 5
     @State var isTimeUp = false
@@ -155,6 +21,7 @@ struct WorkoutDetailView: View {
     @State var isFinished = false
     @State var desiredGoal = 10
     @State var currentNum = 0
+    @State var progressValue = 0.0
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect() // timer for countdown
     
@@ -179,13 +46,13 @@ struct WorkoutDetailView: View {
                     PlayerView(isBegin: $isBegin, isFinished: $isFinished)
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 220)
                     HStack {
-                        Text(String(self.currentNum))
+                        ProgressBar(value: $progressValue)
+                        Text("\(self.currentNum) / \(self.desiredGoal)")
                     }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 30)
-                    .background(Color("mainBackgroundShadow"))
                     .offset(x: 0, y: -20)
                     
-                    CameraView(bodyPoints: $bodyPoints, title: $title, isBegin: $isBegin, isFinished: $isFinished, desiredGoal: $desiredGoal, currentNum: $currentNum)
+                    CameraView(title: $title, isBegin: $isBegin, isFinished: $isFinished, desiredGoal: $desiredGoal, currentNum: $currentNum, progressValue: $progressValue)
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                     
                     //DrawingView(bodyPoints: $bodyPoints)
@@ -229,32 +96,15 @@ struct WorkoutDetailView: View {
                 .cornerRadius(30)
                 .shadow(radius: 20)
                 .opacity(isTimeLabelPresented || isBegin ? 0 : 1)
-            VStack {
-                Image("good_job")
-                    .resizable()
-                Button(action: {
-                    self.isPresented.toggle()
-                }) {
-                    HStack(alignment: .center) {
-                        Text("Done")
-                            .fontWeight(.bold)
-                            .font(.title)
-                    }
-                    .frame(minWidth: 0, maxWidth: 100)
-                    .padding(5)
-                    .foregroundColor(.white)
-                    .background(LinearGradient(gradient: Gradient(colors: [Color("DarkBtnBkg1"), Color("LightBtnBkg1")]), startPoint: .leading, endPoint: .trailing))
-                    .cornerRadius(20)
-                }
-            }
-            .frame(minWidth: 0, maxWidth: 300, minHeight: 0, maxHeight: 300)
-            .padding()
-            .padding(.horizontal)
-            .background(BlurView(style: .systemMaterial))
-            .cornerRadius(30)
-            .shadow(radius: 20)
-            .animation(.easeIn(duration: 1))
-            .offset(y: isFinished ? 40 : UIScreen.main.bounds.height)
+            finishCard(isPresented: $isPresented)
+                .frame(minWidth: 0, maxWidth: 300, minHeight: 0, maxHeight: 300)
+                .padding()
+                .padding(.horizontal)
+                .background(BlurView(style: .systemMaterial))
+                .cornerRadius(30)
+                .shadow(radius: 20)
+                .animation(.easeIn(duration: 1))
+                .offset(y: isFinished ? 40 : UIScreen.main.bounds.height)
             Spacer()
         }
         .navigationBarBackButtonHidden(true)
@@ -302,7 +152,7 @@ struct workoutIntroductionCard: View {
                 Text("Desired amount of \(title)")
                     .font(.headline)
                     .lineLimit(nil)
-                Stepper(value: $desiredGoal, in: 10...50, step: 1) {
+                Stepper(value: $desiredGoal, in: 3...50, step: 1) {
                     Text("\(desiredGoal)")
                 }
                 Spacer()
@@ -327,8 +177,53 @@ struct workoutIntroductionCard: View {
     
 }
 
+struct finishCard: View {
+    @Binding var isPresented: Bool
+    var body: some View {
+        VStack {
+            Image("good_job")
+                .resizable()
+                .scaledToFill()
+            Button(action: {
+                self.isPresented.toggle()
+            }) {
+                HStack(alignment: .center) {
+                    Text("Done")
+                        .fontWeight(.bold)
+                        .font(.title)
+                }
+                .frame(minWidth: 0, maxWidth: 100)
+                .padding(5)
+                .foregroundColor(.white)
+                .background(LinearGradient(gradient: Gradient(colors: [Color("DarkBtnBkg1"), Color("LightBtnBkg1")]), startPoint: .leading, endPoint: .trailing))
+                .cornerRadius(20)
+            }
+        }
+    }
+}
+
+struct ProgressBar: View {
+    @Binding var value: Double
+    
+    var body: some View {
+        GeometryReader { geometry in
+            HStack(alignment: .center) {
+                ZStack(alignment: .leading) {
+                    Rectangle().frame(width: geometry.size.width * 0.9 , height: geometry.size.height * 0.3)
+                        .opacity(0.4)
+                        .foregroundColor(Color(UIColor.systemGray))
+                    
+                    Rectangle().frame(width: min(CGFloat(self.value)*geometry.size.width * 0.9, geometry.size.width), height: geometry.size.height * 0.3)
+                        .foregroundColor(Color("LightBtnBkg1"))
+                        .animation(.linear)
+                }.cornerRadius(45.0)
+            }
+        }
+    }
+}
+
 struct WorkoutDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutDetailView(title: .constant("push-up"), isPresented: .constant(true), bodyPoints: .constant([]))
+        WorkoutDetailView(title: .constant("push-up"), isPresented: .constant(true))
     }
 }

@@ -55,6 +55,7 @@ class JointViewController: UIViewController {
     // number of desired amount
     public var desiredGoal: Int = 0
     
+    var isFirstStart = true
     
     var bodyPoints: [PredictedPoint?] = []
     // Standard points to match
@@ -233,7 +234,9 @@ class JointViewController: UIViewController {
                 let duration = endTime - startTime
                 print("Score: ", score)
                 print("Duration: ", duration)
-                delegate?.CameraViewDidFinished(self)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute:{ // delay execute code
+                    self.delegate?.CameraViewDidFinished(self)
+                })
             } else {
                 standardIndex = 0
                 standardConsequentCount = 0
@@ -253,8 +256,11 @@ class JointViewController: UIViewController {
     }
     
     func begin() {
-        standardFlag = true
-        startTime = CFAbsoluteTimeGetCurrent()
+        if isFirstStart {
+            standardFlag = true
+            startTime = CFAbsoluteTimeGetCurrent()
+            isFirstStart = false
+        }
     }
     
     func pause() {
