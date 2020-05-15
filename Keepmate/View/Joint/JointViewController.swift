@@ -68,13 +68,14 @@ class JointViewController: UIViewController {
     // whether pass the current step
     var standardPassFlag = false
     // consequent number to pass current step
-    let standardConsequentNum = 3
+    var standardConsequentNum = 3
     var standardConsequentCount = 0
     var successCount = 0
     var scoreSum = 0.0
     var tempScore: [Double] = [0.0, 0.0]
     var motionCount = 0
     var startTime = CFAbsoluteTimeGetCurrent()
+    public var score = 80
     public var finishFlag = false
     
     public var name: String = String("Cossack Squat")
@@ -104,6 +105,10 @@ class JointViewController: UIViewController {
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if name == "High Knees" {
+            standardConsequentNum = 1
+        }
 
         // setup the model
         setUpModel()
@@ -173,7 +178,7 @@ class JointViewController: UIViewController {
     }
     
     func loadWorkoutInfo() {
-        let path = Bundle.main.path(forResource: "Cossack Squat", ofType: "plist")
+        let path = Bundle.main.path(forResource: "\(name)", ofType: "plist")
         let data = NSDictionary(contentsOfFile: path!)
         let arr: NSArray = data!["process"] as! NSArray
         motionCount = arr.count
@@ -199,7 +204,7 @@ class JointViewController: UIViewController {
         }
         
         if standardIndex < motionCount {
-            standardPoints = Utilities.Gossack_Squat(standardIndex)
+            standardPoints = Utilities.getStandardCapturePoints(standardIndex, name)
             if standardFlag {
                 //print(standardPoints.matchVector(with: predictedPoints))
                 //print(Utilities.judgePoints(predictedPoints, standardPointsTest))
@@ -229,10 +234,11 @@ class JointViewController: UIViewController {
             if successCount >= desiredGoal {
                 finishFlag = true
                 standardFlag = false
-                let score = scoreSum / Double((motionCount * standardConsequentNum * desiredGoal))
+                let scoreDouble = scoreSum / Double((motionCount * standardConsequentNum * desiredGoal))
                 let endTime = CFAbsoluteTimeGetCurrent()
                 let duration = endTime - startTime
-                print("Score: ", score)
+                print("Score: ", scoreDouble)
+                score = Int(scoreDouble)
                 print("Duration: ", duration)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute:{ // delay execute code
                     self.delegate?.CameraViewDidFinished(self)

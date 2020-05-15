@@ -92,7 +92,7 @@ struct WorkoutCardScrollView: View {
 let workoutItemData = [
     WorkoutItemCard(title: "Biceps Curl", imageName: "Biceps_Curl_Person", backgroundColor: Color("background3"), backgroundShadowColor: Color("backgroundShadow3")),
     WorkoutItemCard(title: "Cossack Squat", imageName: "Cossack_Squat_Person", backgroundColor: Color("background2"), backgroundShadowColor: Color("backgroundShadow2")),
-    WorkoutItemCard(title: "Push-up", imageName: "Push-up_Person", backgroundColor: Color("background1"), backgroundShadowColor: Color("backgroundShadow1")),
+    WorkoutItemCard(title: "High Knees", imageName: "High_Knees_Person", backgroundColor: Color("background1"), backgroundShadowColor: Color("backgroundShadow1")),
     WorkoutItemCard(title: "Dumbbell Shoulder Press", imageName: "Dumbbell_Shoulder_Press_Person", backgroundColor: Color("background4"), backgroundShadowColor: Color("backgroundShadow4")),
 ]
 

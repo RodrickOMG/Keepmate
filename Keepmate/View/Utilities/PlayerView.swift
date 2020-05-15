@@ -11,6 +11,7 @@ import AVFoundation
 
 // video player
 struct PlayerView: UIViewRepresentable {
+    @Binding var title: String
     @Binding var isBegin: Bool
     @Binding var isFinished: Bool
     
@@ -23,19 +24,21 @@ struct PlayerView: UIViewRepresentable {
         }
     }
     func makeUIView(context: Context) -> PlayerUIView {
-        return PlayerUIView(frame: .zero)
+        return PlayerUIView(frame: .zero, title: title)
     }
 }
 
 class PlayerUIView: UIView {
     private let playerLayer = AVPlayerLayer()
+    var title = "Cossack Squat"
     var player = AVPlayer()
-    override init(frame: CGRect) {
+    init(frame: CGRect, title: String) {
         super.init(frame: frame)
-        
-        let mediaPath = Bundle.main.path(forResource: "Cossack Squat", ofType: "mp4")
+        self.title = title
+        print(title)
+        let mediaPath = Bundle.main.path(forResource: "\(title)", ofType: "mp4")
         let mediaURL = URL(fileURLWithPath: mediaPath!)
-        
+
         player = AVPlayer(url:mediaURL as URL)
         player.actionAtItemEnd = .none
         

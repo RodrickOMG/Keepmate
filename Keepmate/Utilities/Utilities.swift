@@ -99,9 +99,9 @@ class Utilities {
         return Double(abs(atan2((p1?.x ?? 0)-(p2?.x ?? 0), (p1?.y ?? 0)-(p2?.y ?? 0))*180))/Double.pi
     }
     
-    static func Gossack_Squat(_ index: Int) -> [CapturedPoint?] {
+    static func getStandardCapturePoints(_ index: Int, _ name: String) -> [CapturedPoint?] {
         var predictPoints: [PredictedPoint?] = []
-        let path = Bundle.main.path(forResource: "Cossack Squat", ofType: "plist")
+        let path = Bundle.main.path(forResource: "\(name)", ofType: "plist")
         let data = NSDictionary(contentsOfFile: path!)
         let arr: NSArray = data!["process"] as! NSArray
         

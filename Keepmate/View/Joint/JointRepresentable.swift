@@ -17,6 +17,7 @@ struct CameraView : UIViewControllerRepresentable {
     @Binding var desiredGoal: Int
     @Binding var currentNum: Int
     @Binding var progressValue: Double
+    @Binding var score: Int
     
     // Init your ViewController
     
@@ -39,7 +40,7 @@ struct CameraView : UIViewControllerRepresentable {
     }
     
     func makeCoordinator() -> CameraView.Coordinator {
-        return Coordinator(isFinished: $isFinished, currentNum: $currentNum, desiredGoal: $desiredGoal, progressValue: $progressValue)
+        return Coordinator(isFinished: $isFinished, currentNum: $currentNum, desiredGoal: $desiredGoal, progressValue: $progressValue, score: $score)
     }
 }
 
@@ -50,16 +51,19 @@ extension CameraView {
         @Binding var currentNum: Int
         @Binding var desiredGoal: Int
         @Binding var progressValue: Double
+        @Binding var score: Int
         
-        init(isFinished: Binding<Bool>, currentNum: Binding<Int>, desiredGoal: Binding<Int>, progressValue: Binding<Double>) {
+        init(isFinished: Binding<Bool>, currentNum: Binding<Int>, desiredGoal: Binding<Int>, progressValue: Binding<Double>, score: Binding<Int>) {
             _isFinished = isFinished
             _currentNum = currentNum
             _desiredGoal = desiredGoal
             _progressValue = progressValue
+            _score = score
         }
         
         func CameraViewDidFinished(_ viewController: JointViewController) {
             isFinished = viewController.finishFlag
+            score = viewController.score
         }
         
         func OneGroupDidFinished(_ viewController: JointViewController) {

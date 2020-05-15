@@ -23,6 +23,8 @@ struct WorkoutDetailView: View {
     @State var currentNum = 0
     @State var progressValue = 0.0
     
+    @State var score = 80
+    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect() // timer for countdown
     
     var body: some View {
@@ -43,16 +45,16 @@ struct WorkoutDetailView: View {
                     Spacer()
                 }
                 VStack {
-                    PlayerView(isBegin: $isBegin, isFinished: $isFinished)
+                    PlayerView(title: $title, isBegin: $isBegin, isFinished: $isFinished)
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 220)
                     HStack {
                         ProgressBar(value: $progressValue)
                         Text("\(self.currentNum) / \(self.desiredGoal)")
                     }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 30)
-                    .offset(x: 0, y: -20)
+                    .offset(x: 0, y: -15)
                     
-                    CameraView(title: $title, isBegin: $isBegin, isFinished: $isFinished, desiredGoal: $desiredGoal, currentNum: $currentNum, progressValue: $progressValue)
+                    CameraView(title: $title, isBegin: $isBegin, isFinished: $isFinished, desiredGoal: $desiredGoal, currentNum: $currentNum, progressValue: $progressValue, score: $score)
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                     
                     //DrawingView(bodyPoints: $bodyPoints)
@@ -96,7 +98,7 @@ struct WorkoutDetailView: View {
                 .cornerRadius(30)
                 .shadow(radius: 20)
                 .opacity(isTimeLabelPresented || isBegin ? 0 : 1)
-            finishCard(isPresented: $isPresented)
+            finishCard(title: $title, isPresented: $isPresented, score: $score, count: $desiredGoal )
                 .frame(minWidth: 0, maxWidth: 300, minHeight: 0, maxHeight: 300)
                 .padding()
                 .padding(.horizontal)
@@ -130,6 +132,20 @@ struct workoutIntroductionCard: View {
     @Binding var title: String
     @Binding var isTimeLabelPresented: Bool
     @Binding var desiredGoal: Int
+    var stepText: String
+    var motionFeelingText: String
+    init(title: Binding<String>, isTimeLabelPresented: Binding<Bool>, desiredGoal: Binding<Int>) {
+        _title = title
+        _isTimeLabelPresented = isTimeLabelPresented
+        _desiredGoal = desiredGoal
+        let titleStr = title.wrappedValue
+        let path = Bundle.main.path(forResource: "\(titleStr)", ofType: "plist")
+        let data = NSDictionary(contentsOfFile: path!)
+        stepText = data!["Step"] as! String
+        motionFeelingText = data!["Motion Feeling"] as! String
+    }
+    
+    
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -140,20 +156,20 @@ struct workoutIntroductionCard: View {
                 Text("Step")
                     .font(.headline)
                     .foregroundColor(Color("systemFont"))
-                Text("·Feet about twice the width of the shoulders.\n·Squat to the left, straighten the right leg, pause slightly, keep the hips as high as possible, slowly translate to the right leg, squat, straighten the left.\n·Do not leave the ground with your feet on the whole course, cross your hands and put them on your chest.")
+                Text(stepText)
                     .font(.body)
                     .foregroundColor(Color("systemFont"))
                 Text("Motion feeling")
                     .font(.headline)
                     .foregroundColor(Color("systemFont"))
-                Text("·When squatting, the inside of the straight leg stretches.\n·When the body is translated, there is a sense of stretch on the inside of the thighs on both sides.")
+                Text(motionFeelingText)
                     .font(.body)
                     .foregroundColor(Color("systemFont"))
                 Text("Desired amount of \(title)")
                     .font(.headline)
                     .lineLimit(nil)
-                Stepper(value: $desiredGoal, in: 3...50, step: 1) {
-                    Text("\(desiredGoal)")
+                Stepper(value: $desiredGoal, in: 3...80, step: 1) {
+                    Text("\(self.desiredGoal)")
                 }
                 Spacer()
                 Button(action: {
@@ -174,16 +190,28 @@ struct workoutIntroductionCard: View {
             }
         }
     }
-    
 }
 
 struct finishCard: View {
+    @Binding var title: String
     @Binding var isPresented: Bool
+    @Binding var score: Int
+    @Binding var count: Int
     var body: some View {
         VStack {
             Image("good_job")
                 .resizable()
                 .scaledToFill()
+            HStack {
+                Text("Finish \(count)")
+                    .font(.custom("Chalkboard SE", size: 18))
+                Text("\(title)s")
+                    .font(.custom("Chalkboard SE", size: 20))
+                    .bold()
+                Text(", Score:  \(score)")
+                    .font(.custom("Chalkboard SE", size: 18))
+            }
+            .offset(y: -40)
             Button(action: {
                 self.isPresented.toggle()
             }) {
@@ -221,6 +249,8 @@ struct ProgressBar: View {
         }
     }
 }
+
+
 
 struct WorkoutDetailView_Previews: PreviewProvider {
     static var previews: some View {

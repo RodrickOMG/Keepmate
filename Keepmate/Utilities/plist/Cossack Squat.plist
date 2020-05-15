@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Motion Feeling</key>
+	<string>·When squatting, the inside of the straight leg stretches.
+·When the body is translated, there is a sense of stretch on the inside of the thighs on both sides.</string>
+	<key>Step</key>
+	<string>·Feet about twice the width of the shoulders.
+·Squat to the left, straighten the right leg, pause slightly, keep the hips as high as possible, slowly translate to the right leg, squat, straighten the left.
+·Do not leave the ground with your feet on the whole course, cross your hands and put them on your chest.</string>
 	<key>workoutName</key>
 	<string>Cossack Squat</string>
 	<key>process</key>
