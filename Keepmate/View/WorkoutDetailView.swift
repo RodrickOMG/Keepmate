@@ -209,10 +209,11 @@ struct finishCard: View {
                 Text("\(title)s")
                     .font(.custom("Chalkboard SE", size: 20))
                     .bold()
-                Text(", Score:  \(score)")
-                    .font(.custom("Chalkboard SE", size: 18))
             }
             .offset(y: -40)
+            Text("Score:  \(score)")
+                .font(.custom("Chalkboard SE", size: 22))
+                .offset(y: -40)
             Button(action: {
                 self.isPresented.toggle()
             }) {

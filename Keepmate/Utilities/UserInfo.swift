@@ -67,6 +67,21 @@ class UserInfo {
         })
     }
     
+    static func addNewFitnessRecord(_ title: String, _ score: Int, _ successCount: Int ) {
+        let user = BmobUser.current()
+        let record:BmobObject = BmobObject(className: "FitnessRecord")
+        record.setObject(score, forKey: "score")
+        record.setObject(title, forKey: "fitnessTitle")
+        record.setObject(successCount, forKey: "fitnessCount")
+        record.setObject(user, forKey: "user")
+        record.saveInBackground { (isSuccessful, error) in
+            if isSuccessful {
+                print("objectId \(String(describing: record.objectId))")
+            }else{
+                print("error \(String(describing: error))")
+            }
+        }
+    }
     
 }
 

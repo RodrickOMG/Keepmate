@@ -240,6 +240,11 @@ class JointViewController: UIViewController {
                 print("Score: ", scoreDouble)
                 score = Int(scoreDouble)
                 print("Duration: ", duration)
+                
+                DispatchQueue.main.async {
+                    UserInfo.addNewFitnessRecord(self.name, self.score, self.successCount)
+                }
+                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute:{ // delay execute code
                     self.delegate?.CameraViewDidFinished(self)
                 })

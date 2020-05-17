@@ -137,6 +137,14 @@ struct ProfileView: View {
                             Divider()
                                 .frame(width: geo.size.width * 0.95)
                                 .padding(.horizontal, 5)
+                            Text("Record")
+                                .bold()
+                                .padding(.leading, 20)
+                                .font(.title)
+                            recordView()
+                            Divider()
+                                .frame(width: geo.size.width * 0.95)
+                                .padding(.horizontal, 5)
                         }
                     }
                     Button(action: {
@@ -191,12 +199,12 @@ struct ProfileView: View {
             let filePath = String(UserDefaults.standard.string(forKey: "profilePicPath")!)
             let url = URL.init(fileURLWithPath: filePath)
             do {
-                print("1")
+                //print("1")
                 let data = try Data(contentsOf: url)
                 let uiImage = UIImage(data: data)
                 self.image = Image(uiImage: uiImage ?? UIImage())
             } catch let error as NSError {
-                print("2")
+                //print("2")
                 print(error)
                 getRemoteProfilePic()
             }
@@ -213,11 +221,11 @@ struct ProfileView: View {
             let task = URLSession.shared.dataTask(with: url as URL) { data, response, error in
                 guard let data = data else { return }
                 if error != nil {
-                    print("3")
+                    //print("3")
                     print(error as Any)
                     self.image = Image("profile_default_male")
                 } else {
-                    print("4")
+                    //print("4")
                     let uiImage = UIImage(data: data)
                     self.image = Image(uiImage: uiImage ?? UIImage())
                     let filePath: String = UserInfo.savePic(data, self.username)
@@ -246,6 +254,50 @@ final class RemoteImageURL: ObservableObject {
             DispatchQueue.main.async { self.data = data }
             
         }.resume()
+    }
+}
+
+struct recordView: View {
+    @State var store: [Record] = []
+    @State var isFirstLoad = true
+    
+    var body: some View {
+        VStack {
+            ForEach(store) { record in
+                NavigationLink(destination: SwiftUIView()) {
+                    HStack {
+                        Text(record.fitnessTitle)
+                        Text("Count: "+String(record.fitnessCount))
+                        Text("Score: "+String(record.score))
+                        Spacer()
+                        Text(record.date)
+                    }
+                .foregroundColor(Color("systemFont"))
+                .padding(10)
+                }
+            }
+        }
+        .onAppear {
+            if self.isFirstLoad {
+                let query:BmobQuery = BmobQuery(className: "FitnessRecord")
+                let user = BmobUser.current()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MM/dd/yyyy"
+                query.whereKey("user", equalTo: user)
+                query.findObjectsInBackground { (array, error) in
+                    for i in 0...array!.count-1 {
+                        let obj = array![i] as! BmobObject
+                        let title = obj.object(forKey: "fitnessTitle") as? String
+                        let score = obj.object(forKey: "score") as? Int
+                        let count = obj.object(forKey: "fitnessCount") as? Int
+                        let date = obj.updatedAt
+                        let record = Record(fitnessTitle: title!, fitnessCount: count!, score: score!, date:  dateFormatter.string(from: date!))
+                        self.store.append(record)
+                    }
+                }
+            }
+            self.isFirstLoad = false
+        }
     }
 }
 
