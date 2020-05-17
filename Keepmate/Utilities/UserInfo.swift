@@ -35,7 +35,7 @@ class UserInfo {
         })
     }
     
-    static func savePic(_ data: Data, _ picName: String) -> String{
+    static func savePic(_ data: Data, _ picName: String) -> String {
         let homeDirectory = NSHomeDirectory()
         let documentPath = homeDirectory + "/Documents"
         //文件管理器
@@ -55,7 +55,17 @@ class UserInfo {
         return filePath
     }
      
-    
+    static func updateUserStatus(_ status: String) {
+        let user = BmobUser.current()
+        user?.setObject(status, forKey: "status")
+        user?.updateInBackground(resultBlock: { (isSuccessful, error) in
+            if isSuccessful {
+                print("update successfully");
+            }else{
+                print("update error is \(String(describing: error?.localizedDescription))")
+            }
+        })
+    }
     
     
 }

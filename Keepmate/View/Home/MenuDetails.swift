@@ -18,7 +18,7 @@ struct MenuDetails: View {
             if selectedItem == 1 {
                 SettingsView(isPresented: $isPresented)
             } else if selectedItem == 0 {
-                ProfileView(isPresented: $isPresented)
+                ProfileView(isTabBar: .constant(false), isPresented: $isPresented)
             }
         }
         .navigationBarTitle(Text(""))

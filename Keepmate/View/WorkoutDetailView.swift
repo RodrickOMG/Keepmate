@@ -134,6 +134,7 @@ struct workoutIntroductionCard: View {
     @Binding var desiredGoal: Int
     var stepText: String
     var motionFeelingText: String
+    
     init(title: Binding<String>, isTimeLabelPresented: Binding<Bool>, desiredGoal: Binding<Int>) {
         _title = title
         _isTimeLabelPresented = isTimeLabelPresented

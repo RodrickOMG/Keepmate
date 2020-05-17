@@ -32,7 +32,7 @@ struct BasicView: View {
             if index == 0 {
                 HomeView(isLogOutConfirmed: $isLogOutConfirmed)
             } else if index == 3 {
-                ProfileView(isPresented: .constant(true))
+                ProfileView(isTabBar: .constant(true), isPresented: .constant(true))
             }
         }
     }

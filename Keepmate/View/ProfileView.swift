@@ -11,9 +11,11 @@ import Combine
 
 
 struct ProfileView: View {
+    @Binding var isTabBar: Bool
     @Binding var isPresented: Bool
     @State var viewState = CGSize.zero // position
     @State var isChangeProfilePicPresented = false
+    @State var isEditButtonPressed = false
     
     @State var showImagePicker: Bool = false
     @State var pickerType: String = ""
@@ -21,6 +23,7 @@ struct ProfileView: View {
     @State var username: String = ""
     @State var email: String = ""
     @State var image: Image? = Image("profile_default_male")
+    @State var status: String = ""
     
     var actionSheet: ActionSheet {
         ActionSheet(title: Text("Choose a new profile picture"), buttons: [
@@ -81,20 +84,22 @@ struct ProfileView: View {
                                 .actionSheet(isPresented: self.$isChangeProfilePicPresented, content: {
                                     self.actionSheet
                                 })
-                                .sheet(isPresented: self.$showImagePicker) {
-                                    ImagePicker(image: self.$image, pickerType: self.$pickerType)
+                                    .sheet(isPresented: self.$showImagePicker) {
+                                        ImagePicker(image: self.$image, pickerType: self.$pickerType)
                                 }
-                                Button(action:{
-                                    print("edit profile")
-                                }) {
-                                    Text("Edit")
-                                        .font(.callout)
-                                        .foregroundColor(.white)
-                                        .bold()
-                                        .frame(width: geo.size.width * 0.18, height: 40, alignment:  .center)
-                                        .background(Color("profileBtnBkg"))
-                                        .cornerRadius(5)
-                                        .shadow(radius: 10)
+                                NavigationLink(destination: EditProfileUIView(username: self.$username, status: self.$status), isActive: self.$isEditButtonPressed) {
+                                    Button(action:{
+                                        self.isEditButtonPressed.toggle()
+                                    }) {
+                                        Text("Edit")
+                                            .font(.callout)
+                                            .foregroundColor(.white)
+                                            .bold()
+                                            .frame(width: geo.size.width * 0.18, height: 40, alignment:  .center)
+                                            .background(Color("profileBtnBkg"))
+                                            .cornerRadius(5)
+                                            .shadow(radius: 10)
+                                    }
                                 }
                                 Button(action:{
                                     print("add friends")
@@ -119,11 +124,19 @@ struct ProfileView: View {
                                 .font(.body)
                                 .padding(.leading, 20)
                             Divider()
-                                .frame(width: geo.size.width * 0.9)
+                                .frame(width: geo.size.width * 0.95)
                                 .padding(.horizontal, 5)
-                            Text("You haven't filled in your profile, click to add one...")
-                                .font(.subheadline)
-                                .padding(.leading, 20)
+                            HStack {
+                                Text("Status: ")
+                                    .font(.headline)
+                                Text(self.status)
+                                    .font(.subheadline)
+                            }
+                            .padding(.leading, 20)
+                            
+                            Divider()
+                                .frame(width: geo.size.width * 0.95)
+                                .padding(.horizontal, 5)
                         }
                     }
                     Button(action: {
@@ -136,6 +149,7 @@ struct ProfileView: View {
                     }.frame(width: 30, height: 30)
                         .padding(.top, 30)
                         .padding(.leading, 5)
+                        .opacity(self.isTabBar ? 0 : 1)
                 }
             }
             .edgesIgnoringSafeArea(.top)
@@ -162,8 +176,15 @@ struct ProfileView: View {
         })
     }
     func getCurrentUser() {
+        let user = BmobUser.current()
         self.username = UserDefaults.standard.string(forKey: "username") ?? "Not Login"
         self.email = UserDefaults.standard.string(forKey: "email") ?? ""
+        if user?.object(forKey: "status") == nil {
+            self.status = "You haven't filled your personal status..."
+        }
+        else {
+            self.status = user?.object(forKey: "status") as! String
+        }
         if UserDefaults.standard.string(forKey: "profilePicPath") == nil || UserDefaults.standard.string(forKey: "profilePicPath") == "" {
             getRemoteProfilePic()
         } else {
@@ -231,11 +252,11 @@ final class RemoteImageURL: ObservableObject {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         Group{
-            ProfileView(isPresented: .constant(true)).previewDevice("iPhone Xs Max")
-            ProfileView(isPresented: .constant(true)).previewDevice("iPhone 11 Pro")
-            ProfileView(isPresented: .constant(true)).previewDevice("iPhone 11")
+            ProfileView(isTabBar: .constant(false), isPresented: .constant(true)).previewDevice("iPhone Xs Max")
+            ProfileView(isTabBar: .constant(false), isPresented: .constant(true)).previewDevice("iPhone 11 Pro")
+            ProfileView(isTabBar: .constant(false), isPresented: .constant(true)).previewDevice("iPhone 11")
                 .environment(\.colorScheme, .dark)
-            ProfileView(isPresented: .constant(true)).previewDevice("iPhone 8")
+            ProfileView(isTabBar: .constant(false), isPresented: .constant(true)).previewDevice("iPhone 8")
         }
     }
 }
